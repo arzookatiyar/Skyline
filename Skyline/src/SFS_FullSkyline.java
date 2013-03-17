@@ -14,9 +14,9 @@ class SFS_FullSkyline {
 	DataInputStream in = new DataInputStream(stream);
 	BufferedReader br = new BufferedReader(new InputStreamReader(in));
 	String strLine;
-	System.out.println("Inside full skyline "+filename);
+	//System.out.println("Inside full skyline "+filename);
 	if (is_route) {
-		System.out.println("A route compute full skyline");
+		//System.out.println("A route compute full skyline");
 	    while ((strLine=br.readLine())!=null) {
 		String []strLinearray = strLine.split("\t");
 		int node1 = Integer.parseInt(strLinearray[0]);
@@ -30,7 +30,7 @@ class SFS_FullSkyline {
 	}
 	else {
 		if (!is_dest) {
-			System.out.println("Not a route compute full skyline "+filename);
+			//System.out.println("Not a route compute full skyline "+filename);
 			while((strLine=br.readLine())!=null) {
 				String []strLinearray = strLine.split("\t");
 				int node1 = Integer.parseInt(strLinearray[0]);
@@ -42,7 +42,7 @@ class SFS_FullSkyline {
 			}	
 	    }
 		else {
-			System.out.println("Not a route compute full skyline dest "+filename);
+			//System.out.println("Not a route compute full skyline dest "+filename);
 			while((strLine=br.readLine())!=null) {
 				String []strLinearray = strLine.split("\t");
 				int node1 = Integer.parseInt(strLinearray[0]);
@@ -55,15 +55,15 @@ class SFS_FullSkyline {
 		}
 		}
 	
-	System.out.println(" Sorted Data");
+	//System.out.println(" Sorted Data");
 	
-	Iterator it = sortedData.iterator();
+	/*Iterator it = sortedData.iterator();
 	while(it.hasNext()) {
 	    Tuple t = (Tuple)(it.next());
 	    Tuple.print_Tuple(t);
 	    System.out.println("      "+(t.distance+(1/t.probability))+"  "+t.distance+" "+(1/t.probability));
 	    System.out.println();
-	}
+	}*/
 	
 	//now sortedData has the sorted data, we now want to calculate the skyline
 	Iterator it1 = sortedData.iterator();
@@ -73,24 +73,24 @@ class SFS_FullSkyline {
 	while (it1.hasNext()) {
 	    Tuple test = (Tuple)it1.next();
 	    if(SFS_Algorithm.is_skyline(test, skyline, true)) {
-	    	System .out.println();
+	    	//System .out.println();
 	    	skyline.add(test);
-	    	System.out.println("Added to the skyline ");
-	    	Tuple.print_Tuple(test);
+	    	//System.out.println("Added to the skyline ");
+	    	//Tuple.print_Tuple(test);
 	    }
 	}
-	System .out.println();
+	//System .out.println();
 
-	System.out.println("SKYLINE "+skyline.size());
+	//System.out.println("SKYLINE "+skyline.size());
 	
 
-	for(int i=0; i<skyline.size(); i++) {
+	/*for(int i=0; i<skyline.size(); i++) {
 	    Tuple t = (Tuple)(skyline.get(i));
 	    Tuple.print_Tuple(t);
 	    System.out.println();
-	}
+	}*/
 
-	System.out.println("SKYLINE ENDS");
+//	System.out.println("SKYLINE ENDS");
 	sortedData.clear();
 	br.close();
 	

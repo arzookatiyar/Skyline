@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 class Aggregated_Skyline {
-	static String folder = "Samplestats_30/";;
-	static int number = 30;
+	static String folder = "Samplestats_5/";;
+	static int number = 5;
 	public static void printPath_list(ArrayList<ArrayList<Integer>> path_list) {
 		System.out.println("Printing path list.....");
 		for (int i=0; i<path_list.size(); i++) {
@@ -16,7 +16,7 @@ class Aggregated_Skyline {
 		}		
 	}
 		
-    public static int find_aggregatedskyline() throws IOException {
+    public static ArrayList find_aggregatedskyline() throws IOException {
 	
 	/* When we are running this code we have all the files with the required 
 	   relations i.e.,
@@ -26,7 +26,7 @@ class Aggregated_Skyline {
 	   d) node_id, prob
 	   We also have a file which stores the sequence of the types
 	*/
-	
+	ArrayList return_sizes = new ArrayList();
 	FileInputStream stream = new FileInputStream(folder+"order_"+number+".txt");
 	DataInputStream in = new DataInputStream(stream);
 	BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -38,6 +38,8 @@ class Aggregated_Skyline {
 	    strLine_1 = br.readLine();
 	    join_order.add(type_1);
 	}
+	
+	br.close(); //Closing file
 	String file_name = folder+"relationchng_s"+number+".txt";
 	//JOIN (node and source edges)
 	String join_file1 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 3);//will result in a file called "Sample_5/join_relation_node_5.txt"
@@ -70,11 +72,13 @@ class Aggregated_Skyline {
 	    path_list.add(id, new_pathlist);
 	}
 	
-	printPath_list(path_list);
+	br_id.close(); //Closing file
+	
+//	printPath_list(path_list);
 	
 	for (int i=0; i<join_order.size(); i++) {
 	    file_name = folder+"relation_type"+join_order.get(i)+".txt";
-	    System.out.println(file_name);
+	    //System.out.println(file_name);
 	    //JOIN (node and edge)
 	    String join_file2;
 	    ArrayList<Tuple> full_1;
@@ -82,16 +86,16 @@ class Aggregated_Skyline {
 	    if (i == join_order.size()-1) {
 		/*At the end there is a join_file1, we have to end it with the destination side relation */
 		join_file2 = SimpleJoin.computeSimpleJoin(folder+"relationchng_d"+number+".txt", folder+"relation_node_"+number+".txt", 4);
-		System.out.println(" compute full skyline true "+join_file1);
-		System.out.println(" compute full skyline false "+join_file2);	
+		//System.out.println(" compute full skyline true "+join_file1);
+		//System.out.println(" compute full skyline false "+join_file2);	
 	    full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
 	    full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, true);
 	    }
 	    else {
-	    System.out.println("Last stage "+file_name);
+	    //System.out.println("Last stage "+file_name);
 		join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
-		System.out.println(" compute full skyline true "+join_file1);
-		System.out.println(" compute full skyline false "+join_file2);	
+		//System.out.println(" compute full skyline true "+join_file1);
+		//System.out.println(" compute full skyline false "+join_file2);	
 		full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
 		full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, false);
 	    }
@@ -101,12 +105,12 @@ class Aggregated_Skyline {
 	    
 	    /***************************ERRROR IN THE FULL SKYLINE *****************************/
 	    
-	    System.out.println("After full skyline path id remaining");
+	    //System.out.println("After full skyline path id remaining");
 	    ArrayList path_ids = new ArrayList();
 	    for (int l=0; l<full_1.size(); l++ ){
 	    	Tuple t = (Tuple)full_1.get(l);
 	    	path_ids.add(t.path_id);
-	    	System.out.println(t.path_id);
+	    	//System.out.println(t.path_id);
 	    }
 	    
 	    for (int l=0; l<path_list.size(); l++) {
@@ -117,7 +121,7 @@ class Aggregated_Skyline {
 	    		}
 	    		else {
 	    			((ArrayList)path_list.get(l)).clear();
-	    			System.out.println("Remove from the path_list "+l);
+	    			//System.out.println("Remove from the path_list "+l);
 	    			free_index.add(l);
 	    		}
 	    		}
@@ -136,21 +140,21 @@ class Aggregated_Skyline {
 	    Tuple_ArrayList local_tuple_2 = SFS_LocalSkyline.computeLocalSkyline(full_2, false);
 	    
 	    ArrayList<Tuple> AB = SimpleJoin.computeSimpleJoin(local_tuple_1.skyline , local_tuple_2.skyline, path_list, free_index);
-	    System.out.println("AB--------"+AB.size());
+	    //System.out.println("AB--------"+AB.size());
 	    
-	    for (int l=0; l<AB.size(); l++) {
+	    /*for (int l=0; l<AB.size(); l++) {
 	    	Tuple.print_Tuple((Tuple)AB.get(l));
 	    	System.out.println();
-	    }
+	    }*/
 	    
 	    ArrayList<Tuple> dashAB = SimpleJoin.computeSimpleJoin(local_tuple_1.non_skyline , local_tuple_2.skyline, path_list, free_index);
-	    System.out.println("dashAB--------"+dashAB.size());
+	    //System.out.println("dashAB--------"+dashAB.size());
 	    ArrayList<Tuple> AdashB = SimpleJoin.computeSimpleJoin(local_tuple_1.skyline , local_tuple_2.non_skyline, path_list, free_index);
-	    System.out.println("AdashB--------"+AdashB.size());
+	    //System.out.println("AdashB--------"+AdashB.size());
 	    
 	    //NOT SURE WHAT TO INCLUDE HERE
 	    ArrayList dashAdashB = SimpleJoin.computeSimpleJoin(local_tuple_1.non_skyline , local_tuple_2.non_skyline, path_list, free_index);
-	    System.out.println("dashAdashB--------"+dashAdashB.size());
+	    //System.out.println("dashAdashB--------"+dashAdashB.size());
 	    
 	    //According to the research paper,we need to find the join and write it in a file
 	    //Create an array list containing all the skylines found till now
@@ -162,17 +166,17 @@ class Aggregated_Skyline {
 		    AB.add((Tuple)dashAdashB.get(k));
 		}
 	    }
-	    
+	    return_sizes.add(AB.size());
 	    //Write this into a file
 	    /* Can improve efficiency by not writing the answers everytime to the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 	    
 	    join_file1 = folder+"skyline_"+number+""+i+".txt";
 	    FileWriter fstream = new FileWriter(join_file1);
 	    BufferedWriter out = new BufferedWriter(fstream);	
-	    System.out.println(" skyline----------------  "+AB.size());
+	    //System.out.println(" skyline----------------  "+AB.size());
 	    for (int k=0; k<AB.size(); k++) {
 		Tuple t = (Tuple)AB.get(k);
-		System.out.println(" tuple id "+t.node_id1+" "+t.distance + "  "+t.probability+" "+t.path_id);
+		//System.out.println(" tuple id "+t.node_id1+" "+t.distance + "  "+t.probability+" "+t.path_id);
 		out.write(String.valueOf(t.node_id1));
 		out.write("\t");
 		out.write(String.valueOf(t.distance));
@@ -205,9 +209,10 @@ class Aggregated_Skyline {
 		out.write("\n");
 	}
     out.close();
-	System.out.println("Printing the final path");
-	printPath_list(path_list);
-		return finalpaths.size();
+	//System.out.println("Printing the final path");
+	//printPath_list(path_list);
+    	return_sizes.add(finalpaths.size());
+    	return return_sizes;
     }
     
     public static void main(String args[]) throws IOException {

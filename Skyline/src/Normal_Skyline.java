@@ -4,8 +4,8 @@ import java.util.TreeSet;
 
 class Normal_Skyline {
 	
-	static String folder = "Samplestats_30/";
-	static int number = 30;
+	static String folder = "Samplestats_5/";
+	static int number = 5;
 	
 	public static ArrayList<Tuple> returnlist(String filename, boolean is_route, boolean is_dest) throws IOException{
 		FileInputStream stream = new FileInputStream(filename);
@@ -14,9 +14,9 @@ class Normal_Skyline {
 		String strLine;
 		ArrayList<Tuple> sortedData = new ArrayList<Tuple>();
 
-		System.out.println("Inside full skyline "+filename);
+		//System.out.println("Inside full skyline "+filename);
 		if (is_route) {
-			System.out.println("A route compute full skyline");
+			//System.out.println("A route compute full skyline");
 		    while ((strLine=br.readLine())!=null) {
 			String []strLinearray = strLine.split("\t");
 			int node1 = Integer.parseInt(strLinearray[0]);
@@ -30,7 +30,7 @@ class Normal_Skyline {
 		}
 		else {
 			if (!is_dest) {
-				System.out.println("Not a route compute full skyline "+filename);
+				//System.out.println("Not a route compute full skyline "+filename);
 				while((strLine=br.readLine())!=null) {
 					String []strLinearray = strLine.split("\t");
 					int node1 = Integer.parseInt(strLinearray[0]);
@@ -42,7 +42,7 @@ class Normal_Skyline {
 				}	
 		    }
 			else {
-				System.out.println("Not a route compute full skyline dest "+filename);
+				//System.out.println("Not a route compute full skyline dest "+filename);
 				while((strLine=br.readLine())!=null) {
 					String []strLinearray = strLine.split("\t");
 					int node1 = Integer.parseInt(strLinearray[0]);
@@ -55,22 +55,26 @@ class Normal_Skyline {
 			}
 
 		}
+		br.close();//Closing file
 		return sortedData;
 	}
 	
-	public static int find_normalskyline() throws IOException {
+	public static ArrayList find_normalskyline() throws IOException {
 		
 		FileInputStream stream = new FileInputStream(folder+"order_"+number+".txt");
 		DataInputStream in = new DataInputStream(stream);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 		String strLine_1 = br.readLine();
 		ArrayList join_order = new ArrayList();
+		ArrayList return_sizes = new ArrayList();
+
 		
 		while (strLine_1!=null) {
 		    int type_1 = Integer.parseInt(strLine_1);
 		    strLine_1 = br.readLine();
 		    join_order.add(type_1);
 		}
+		br.close();  //Closing file
 		String file_name = folder+"relationchng_s"+number+".txt";
 		//JOIN (node and source edges)
 		String join_file1 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 3);//will result in a file called "Sample_5/join_relation_node_5.txt"
@@ -102,12 +106,13 @@ class Normal_Skyline {
 		    new_pathlist.add(Integer.parseInt(line[0]));
 		    path_list.add(id, new_pathlist);
 		}
+		br_id.close();
 		
-		Aggregated_Skyline.printPath_list(path_list);
+		//Aggregated_Skyline.printPath_list(path_list);
 		
 		for (int i=0; i<join_order.size(); i++) {
 		    file_name = folder+"relation_type"+join_order.get(i)+".txt";
-		    System.out.println(file_name);
+		    //System.out.println(file_name);
 		    //JOIN (node and edge)
 		    String join_file2;
 		    ArrayList<Tuple> full_1;
@@ -124,7 +129,7 @@ class Normal_Skyline {
 			    //full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, true);
 			    }
 			    else {
-			    System.out.println("Last stage "+file_name);
+			    //System.out.println("Last stage "+file_name);
 				join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
 				//System.out.println(" compute full skyline true "+join_file1);
 				//System.out.println(" compute full skyline false "+join_file2);	
@@ -134,12 +139,12 @@ class Normal_Skyline {
 				//full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, false);
 			    }
 		    		    
-		    System.out.println("After full skyline path id remaining");
+		   // System.out.println("After full skyline path id remaining");
 		    ArrayList path_ids = new ArrayList();
 		    for (int l=0; l<full_1.size(); l++ ){
 		    	Tuple t = (Tuple)full_1.get(l);
 		    	path_ids.add(t.path_id);
-		    	System.out.println(t.path_id);
+		    	//System.out.println(t.path_id);
 		    }
 
 
@@ -151,19 +156,21 @@ class Normal_Skyline {
 		    		}
 		    		else {
 		    			((ArrayList)path_list.get(l)).clear();
-		    			System.out.println("Remove from the path_list "+l);
+		    			//System.out.println("Remove from the path_list "+l);
 		    			free_index.add(l);
 		    		}
 		    		}
 		    	}
 
 		    ArrayList<Tuple> AB = SimpleJoin.computeSimpleJoin(full_1, full_2, path_list, free_index);
-		    System.out.println("AB--------"+AB.size());
+		    //System.out.println("AB--------"+AB.size());
 		    
-		    for (int l=0; l<AB.size(); l++) {
+		 /*   for (int l=0; l<AB.size(); l++) {
 		    	Tuple.print_Tuple((Tuple)AB.get(l));
 		    	System.out.println();
-		    }
+		    }*/
+		    
+		    return_sizes.add(AB.size());
 		    
 		   // ArrayList<Tuple> dashAB = SimpleJoin.computeSimpleJoin(local_tuple_1.non_skyline , local_tuple_2.skyline, path_list, free_index);
 		   // System.out.println("dashAB--------"+dashAB.size());
@@ -177,10 +184,10 @@ class Normal_Skyline {
 		    join_file1 = folder+"skyline_"+number+""+i+".txt";
 		    FileWriter fstream = new FileWriter(join_file1);
 		    BufferedWriter out = new BufferedWriter(fstream);	
-		    System.out.println(" skyline----------------  "+AB.size());
+		    //System.out.println(" skyline----------------  "+AB.size());
 		    for (int k=0; k<AB.size(); k++) {
 			Tuple t = (Tuple)AB.get(k);
-			System.out.println(" tuple id "+t.node_id1+" "+t.distance + "  "+t.probability+" "+t.path_id);
+			//System.out.println(" tuple id "+t.node_id1+" "+t.distance + "  "+t.probability+" "+t.path_id);
 			out.write(String.valueOf(t.node_id1));
 			out.write("\t");
 			out.write(String.valueOf(t.distance));
@@ -214,9 +221,11 @@ class Normal_Skyline {
 			out.write("\n");
 		}
 	    out.close();
-		System.out.println("Printing the final path");
-		Aggregated_Skyline.printPath_list(path_list);
-		return finalpaths.size();
+		//System.out.println("Printing the final path");
+		//Aggregated_Skyline.printPath_list(path_list);
+		return_sizes.add(finalpaths.size());
+		
+		return return_sizes;
 	}
 	
 	public static void main(String args[]) throws IOException{

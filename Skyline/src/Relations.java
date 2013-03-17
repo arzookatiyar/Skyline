@@ -9,8 +9,8 @@ class Relations {
     static ArrayList type2_list = new ArrayList();
     static ArrayList type3_list = new ArrayList();
     static int g_counter = 0;
-	static String folder = "Samplestats_30/";
-	static int number = 30;
+	static String folder = "Samplestats_5/";
+	static int number = 5;
 
     public static void find_Relations() throws IOException {
 	FileInputStream stream = new FileInputStream(folder+"data2_"+number+".txt");
@@ -95,7 +95,7 @@ class Relations {
 	
 	for(int j=0; j<type1_list.size(); j++) {
 	    int search_id = (Integer)type1_list.get(j);
-	    System.out.println(search_id);
+	    //System.out.println(search_id);
 	    if (table.get(search_id)!=null) {
 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
 		    //int [][]neighbours_list = (int [][])table.get(search_id);
@@ -123,7 +123,7 @@ class Relations {
 	
 	for(int j=0; j<type2_list.size(); j++) {
 	    int search_id = (Integer)type2_list.get(j);
-	    System.out.println(search_id);
+	    //System.out.println(search_id);
 	    if (table.get(search_id)!=null) {
 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
 		    //int [][]neighbours_list = (int [][])table.get(search_id);
@@ -150,7 +150,7 @@ class Relations {
 	
 	for(int j=0; j<type3_list.size(); j++) {
 	    int search_id = (Integer)type3_list.get(j);
-	    System.out.println(search_id);
+	    //System.out.println(search_id);
 	    if (table.get(search_id)!=null) {
 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
 		    //int [][]neighbours_list = (int [][])table.get(search_id);
@@ -189,7 +189,7 @@ class Relations {
 	    //for(int j=0; j<type1_list.size(); j++) {
 	    //int search_id = (Integer)type1_list.get(j);
 	    int search_id = Integer.parseInt(line[0]);
-	    System.out.println(search_id);
+	    //System.out.println(search_id);
 	    if (table.get(search_id)!=null) {
 	    	int counter = 0;
 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
@@ -245,18 +245,18 @@ class Relations {
 	line = br.readLine().split("\t");
 	br.close();
 	if (line.length == 1) {
-		System.out.println("DESTINATION....."+dest_type);
+		//System.out.println("DESTINATION....."+dest_type);
 	    fw = new FileWriter(folder+"relationchng_d"+number+".txt");
 	    bw2 = new BufferedWriter(fw);
 	    //for(int j=0; j<type1_list.size(); j++) {
 	    //int search_id = (Integer)type1_list.get(j);
 	    int search_id = Integer.parseInt(line[0]);
-	    System.out.println(search_id);
+	    //System.out.println(search_id);
 	    if (table.get(search_id)!=null) {
 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
 		    //int [][]neighbours_list = (int [][])table.get(search_id);
 		    //	System.out.println(((int [][])table.get(19514897))[i][0]+" "+((int [][])table.get(19514897))[i][1]+" "+((int [][])table.get(search_id)).length);
-			System.out.println("Table not empty!!");
+			//System.out.println("Table not empty!!");
 		    if ((int [][])table.get(search_id) != null) {
 			if (dest_type == 1) {
 			    if (!type1_list.contains(((int [][])table.get(search_id))[i][0]))
@@ -268,12 +268,12 @@ class Relations {
 			}
 			if (dest_type == 3) {
 			    if (!type3_list.contains(((int [][])table.get(search_id))[i][0])){
-			    	System.out.println("not contained ");
+			    	//System.out.println("not contained ");
 				continue;
 			    }
 			}
 
-			System.out.println("Enters");
+			//System.out.println("Enters");
 			//bw.write("1233");
 			//bw2.write(String.valueOf(search_id));
 			//bw2.write("\t");

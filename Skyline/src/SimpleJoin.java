@@ -13,22 +13,22 @@ class SimpleJoin {
 	   and list 2 will contain node1, node2, distance and probability
 	*/
 	
-	System.out.println("Before the join takes place the current ");
-	Aggregated_Skyline.printPath_list(path_list);
+	//System.out.println("Before the join takes place the current ");
+	//Aggregated_Skyline.printPath_list(path_list);
 	
 	if (list1.size() == 0 || list2.size() == 0)
 		return final_join;
 	for (int i=0; i<list1.size(); i++) {
 	    boolean is_first = true;
 	    Tuple left = (Tuple)list1.get(i);
-		System.out.println("i is "+i+" path id is "+left.path_id+" "+list1.size() + " "+list2.size());
+		//System.out.println("i is "+i+" path id is "+left.path_id+" "+list1.size() + " "+list2.size());
 	    ArrayList tobecopied = new ArrayList();
 	    for (int i1=0; i1<((ArrayList)path_list.get(left.path_id)).size(); i1++)
 	    	tobecopied.add(((ArrayList)path_list.get(left.path_id)).get(i1));
 	    
-	    for (int kk=0; kk<tobecopied.size(); kk++)
-	    	System.out.print(tobecopied.get(kk)+"  ");
-	    System.out.println();
+	    //for (int kk=0; kk<tobecopied.size(); kk++)
+	    	//System.out.print(tobecopied.get(kk)+"  ");
+	    //System.out.println();
 	    		//(ArrayList)path_list.get(left.path_id);
 	    for (int j=0; j<list2.size(); j++) {
 		Tuple right = (Tuple)list2.get(j);
@@ -50,8 +50,8 @@ class SimpleJoin {
 			//Also add the new path in the path_list
 			//((ArrayList)path_list.get(left.path_id)).add(left.node_id1);
 			((ArrayList)path_list.get(left.path_id)).add(right.node_id2);
-			System.out.println("Add to the path_list1 "+left.node_id1+"  "+is_first+" "+right.node_id1
-					+" "+left.path_id);
+			//System.out.println("Add to the path_list1 "+left.node_id1+"  "+is_first+" "+right.node_id1
+			//		+" "+left.path_id);
 			
 			/*System.out.println("paths now..................... ");
 			Aggregated_Skyline.printPath_list(path_list);
@@ -84,8 +84,8 @@ class SimpleJoin {
 			new_path.add(right.node_id2);
 			
 			path_list.add(used_id, new_path);			
-			System.out.println("Add to the path_list2 "+left.node_id1+"  "+is_first+" "+right.node_id1
-					+" "+left.path_id+" "+used_id);
+			//System.out.println("Add to the path_list2 "+left.node_id1+"  "+is_first+" "+right.node_id1
+			//		+" "+left.path_id+" "+used_id);
 			
 			/*System.out.println("paths now..................... ");
 			Aggregated_Skyline.printPath_list(path_list);
@@ -99,45 +99,45 @@ class SimpleJoin {
 	    if (is_first == true) {
 		//Need to remove the index and keep it in the free_index
 		int id_removed = left.path_id;
-		System.out.println(path_list.size()+"  "+id_removed+"  "+left.node_id1+" ");
+		//System.out.println(path_list.size()+"  "+id_removed+"  "+left.node_id1+" ");
 		if (path_list.size() > 0 && path_list.size()>id_removed) {
 			//path_list.remove(id_removed);
 			((ArrayList)path_list.get(id_removed)).clear();
-			System.out.println("Remove from the path_list "+id_removed);
+			//System.out.println("Remove from the path_list "+id_removed);
 			free_index.add(id_removed);
 			
-			System.out.println("paths now..................... ");
-			Aggregated_Skyline.printPath_list(path_list);
-			System.out.println("paths now......ends............... ");
+			//System.out.println("paths now..................... ");
+			//Aggregated_Skyline.printPath_list(path_list);
+			//System.out.println("paths now......ends............... ");
 			
 		}
 	    }
 	}
-	System.out.println("Printing intermediate path");
-	Aggregated_Skyline.printPath_list(path_list);
+	//System.out.println("Printing intermediate path");
+	//Aggregated_Skyline.printPath_list(path_list);
 
-	System.out.println("FINAL JOIN");
+	/*System.out.println("FINAL JOIN");
 	for (int k=0; k<final_join.size(); k++) {
 		Tuple.print_Tuple((Tuple)final_join.get(k));
 		System.out.println();
-	}
+	}*/
 	
 	return final_join;
     }
     
     public static String computeSimpleJoin(String filename1, String filename2, int join_type) throws IOException{
-    	System.out.println(filename1+" Simple Join "+filename2);	
+    	//System.out.println(filename1+" Simple Join "+filename2);	
 	FileInputStream stream1 = new FileInputStream(filename1);
 	DataInputStream in1 = new DataInputStream(stream1);
 	BufferedReader br1 = new BufferedReader(new InputStreamReader(in1));
 	
 	
-	System.out.println(filename1+" Simple Join "+filename2);
+	//System.out.println(filename1+" Simple Join "+filename2);
 	int index = filename1.lastIndexOf("/");
 	String output_file = filename1.substring(0, index+1)+"join_"+filename1.substring(index+1, filename1.length());
 	FileWriter fstream = new FileWriter(output_file);
 	BufferedWriter out = new BufferedWriter(fstream);	
-	System.out.println(" Output Join File "+output_file);	
+	//System.out.println(" Output Join File "+output_file);	
 	
 	String strLine1;
 	while((strLine1=br1.readLine()) != null) {
@@ -234,6 +234,7 @@ class SimpleJoin {
 		    }
 		}									
 	    }
+	    br2.close(); //Closing file
 	    
 	}
 	

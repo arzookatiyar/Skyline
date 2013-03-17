@@ -11,12 +11,12 @@ class SFS_Algorithm {
 	    Tuple t = (Tuple)(it.next());
 	    if (full_skyline) {
 		if(full_dominates(test, t)){
-			System.out.println();
-			System.out.println("is dominated by-------");
-			Tuple.print_Tuple(test);
-			System.out.println();
-			Tuple.print_Tuple(t);
-			System.out.println();
+			//System.out.println();
+			//System.out.println("is dominated by-------");
+			//Tuple.print_Tuple(test);
+			//System.out.println();
+			//Tuple.print_Tuple(t);
+			//System.out.println();
 		    return false;
 		}
 	    }

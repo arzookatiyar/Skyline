@@ -13,8 +13,8 @@ import java.util.Hashtable;
 
 public class Examplem_n {
 	static Hashtable prob_table = new Hashtable();
-	static int nodes = 10;
-	static String folder = "Sample10_";
+	static int nodes = 30;
+	static String folder = "Sample30_";
 	
 	
 	public static int among_POI(int []array_id, int []check_id) {

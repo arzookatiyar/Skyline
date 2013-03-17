@@ -146,7 +146,7 @@ class ThresholdAlgorithm {
 		}		
 	    }
 	}
-	System.out.println("Average degree "+(avg_degree/(id_array.length)));
+	//System.out.println("Average degree "+(avg_degree/(id_array.length)));
 	
 	//for (int i = 1; i<=6; i++) {
 	//int i1 = 19514897;
@@ -178,7 +178,7 @@ class ThresholdAlgorithm {
 		long startTime = System.nanoTime();
 		int initial_count = count_iter;
 		best_Path = find_path(1, Path, best_Path, query_id, current_sum, best_sum);
-		System.out.println(count_iter-initial_count);
+		//System.out.println(count_iter-initial_count);
 		long endTime = System.nanoTime();
 		//System.out.println("time "+(endTime-startTime));
 		
@@ -186,7 +186,7 @@ class ThresholdAlgorithm {
 		    System.out.println(best_Path[q][0]+"  "+best_Path[q][1]);
 		    }*/
 	    }
-	    System.out.println(count_iter+" for k = "+k+"  "+(count_iter/(id_array.length)));
+	    //System.out.println(count_iter+" for k = "+k+"  "+(count_iter/(id_array.length)));
 	    count_iter = 0;
 	}
     }
