@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/java-lib/!svn/ver/19/trunk
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/java-lib/!svn/ver/18/trunk/.classpath
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/java-lib/!svn/ver/7/trunk/LICENSE
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/java-lib/!svn/ver/7/trunk/.project
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/java-lib/!svn/ver/17/trunk/build.xml
+END

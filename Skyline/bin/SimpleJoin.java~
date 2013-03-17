@@ -1,0 +1,158 @@
+/* TODO : maintain the path computed so far : Right now we ignore the intermediated nodes*/
+
+import java.io.*;
+
+class SimpleJoin {
+    
+    public static ArrayList<Tuple> computeSimpleJoin(ArrayList<Tuple> list1, ArrayList<Tuple> list2, ArrayList<ArrayList<Integer>>path_list, TreeSet free_index) {
+	ArrayList<Tuple> final_join = new ArrayList<Tuple>();
+	/* Now we are joining the local skylines and non-local skylines */
+	/* List1 will contain node1, distance and probability, path_id
+	   and list 2 will contain node1, node2, distance and probability
+	*/
+	
+	for (int i=0; i<list1.size(); i++) {
+	    booelan is_first = true;
+	    Tuple left = (Tuple)list1.get(i);
+	    for (int j=0; j<list2.size(); j++) {
+		Tuple right = (Tuple)list2.get(j);
+		if (left.node_id1 == right.node_id1){
+		    /*Here we need to take care of the intermediate nodes in the path*/
+		    
+		    /* In order to take care of the intermediate path, we will take into account the path-ids, while joining two paths we see the path-id first, then add a new path with the new path-id.Also we maintain a TreeSet to store all the empty indices and whether we need to extend the path Arraylist.
+		     */
+		    if (is_first) {
+			is_first = false;
+			//We need to add the new node in the path and also write the new path in a file
+			Tuple new_tuple = new Tuple(right.node_id2, (left_node.distance + right_node.distance), (left_node.probability*right_node.probability), left.path_id);
+			final_join.add(new_tuple);
+			//Also add the new path in the path_list
+			((ArrayList)path_list.get(left.path_id)).add(left.node_id1); 	
+		    }
+		    else {
+			//find a new available path_id from the tree set
+			int used_id;
+			if (free_index.size!=0) {
+			    used_id = free_index.first();
+			}
+			else {
+			    //add at the last!
+			    used_id = (path_list.size())+(free_index.size())-1;	
+			    //		    used_id = (path_list.size());
+			}
+			Tuple new_tuple = new Tuple(right.node_id2, (left_node.distance + right_node.distance), (left_node.probability*right_node.probability), used_id);
+			
+			//prepare a copy of the arraylist and then add a new element at the end
+			ArrayList new_path = new ArrayList();
+			ArrayList tobecopied = (ArrayList)path_list.get(left.path_id);
+			for (int p=0; p<tobecopied.size(); p++) {
+			    new_path.add(tobecopied.get(p));
+			}
+			new_path.add(left.node_id1);
+			path_list.add(used_id, new_path);			
+		    }
+		}		   
+	    }
+	    //check if is_first is false then we know that at least 1 corresponding join was formed.
+	    if (is_first == true) {
+		//Need to remove the index and keep it in the free_index
+		int id_removed = left.path_id;
+		path_list.remove(id_removed);
+		free_index.add(id_removed);
+	    }
+	}
+	return final_join;
+    }
+    
+    public static String computeSimpleJoin(String filename1, String filename2, int join_type) {
+	FileInputStream stream1 = new FileInputStream(filename1);
+	DataInputStream in1 = new DataInputStream(stream1);
+	BufferedReader br1 = new BufferedReader(new InputStreamReader(in1));
+	
+	FileInputStream stream2 = new FileInputStream(filename2);
+	DataInputStream in2 = new DataInputStream(stream2);
+	BufferedReader br2 = new BufferedReader(new InputStreamReader(in2));
+	
+	int index = filename1.lastIndexOf("/");
+	String output_file = filename1.substring(0, index-1)+"join_"+filename1.substring(index+1, filename.length()-1);
+	FileWriter fstream = new FileWriter(output_file);
+	BufferedWriter out = new BufferedWriter(fstream);	
+
+	String strLine1;
+	while((strLine1=br1.readLine()) != null) {
+	    /*Assume that the join is with nodes of the edges*/
+	    /* Possible Types 
+	       1) ---> id1, id2, distance(edge) and id1, probability(node)
+	       2) ---> id1, distance, probability, path_id (currentpath) and id1, id2, distance and probability (joined node and edge)
+	       3) ---> id1, distance, path_id and id1, probability
+	    */
+	    boolean temp = false;
+	    String strLine2;
+	    String []string1_array = strLine1.split("\t");		
+	    if (join_type == 1) {
+		int id_file1 = Integer.parseInt(string1_array[1]);
+		while((strLine2 = br2.readLine())!=null) {
+		    //in the second file the id occurs only once and hence we can stop iterating there. Can optimise it by storing it in the ascending order??
+		    String []string2_array = strLine2.split("\t");		    
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    if (id_file1 == id_file2) {
+			out.write(string1_array[0]);
+			out.write("\t");
+			out.write(string1_array[1]);
+			out.write("\t");
+			out.write(string1_array[2]);
+			out.write("\t");
+			out.write(string2_array[1]);
+			out.write("\n");
+			break;
+		    }
+		}
+	    }
+	    else if (join_type == 2) {
+		int id_file1 = Integer.parseInt(string_array[0]);
+		while ((strLine2=br2.readLine())!=null) {
+		    String []string2_array = strLine2.split("\t");
+		    //here we need to take care of the storing the path computed so far!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    if (id_file1 == id_file2) {
+			out.write(string2_array[1]);
+			out.write("\t");
+			out.write(Integer.parseInt(string2_array[2])+Integer.parseInt(string1_array[1]));
+			out.write("\t");
+			out.write(Double.parseDouble(string2_array[3])*Double.parseDouble(string1_array[2]));
+			//		out.write("\t");
+			//out.write(string2_array[1]);
+			out.write("\n");
+			
+		    }
+		}
+	    }
+	    else if (join_type == 3) {		
+		int id_file1 = Integer.parseInt(string1_array[0]);
+		while ((strLine2=br2.readLine())!=null) {
+		    String []string2_array = strLine2.split("\t");
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    if (id_file1 == id_file2) {
+			out.write(string1_array[0]);
+			out.write("\t");
+			out.write(string1_array[1]);			
+			out.write("\t");
+			out.write(string2_array[1]);
+			out.write("\t");
+			out.write(string1_array[2]);
+			out.write("\n");			
+		    }
+		}				
+	    }	    
+	}
+	
+	br1.close();
+	br2.close();
+	
+	return output_file;
+    }
+    
+    public static void main(String args[]) throws IOException {
+	
+    }
+}

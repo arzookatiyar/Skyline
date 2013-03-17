@@ -1,0 +1,34 @@
+package com.cloudmade.examples;
+
+/*
+ * Example usage of CloudMade's API
+ */
+
+import com.cloudmade.api.CMClient;
+import com.cloudmade.api.geocoding.GeoResult;
+import com.cloudmade.api.geocoding.GeoResults;
+import com.cloudmade.api.geocoding.ObjectNotFoundException;
+import com.cloudmade.api.geometry.Point;
+
+public class FindClosest {
+	
+    public static void main(String[] args) {
+        CMClient client = new CMClient("BC9A493B41014CAABB98F0471D759707");
+
+        GeoResults results = client.find("Potsdamer Platz, Berlin, Germany", 2, 0, null, true, true, true);
+        GeoResult result = results.results[0];
+
+        System.out.println(result.properties);
+        System.out.println(result.centroid);
+
+        try {
+            result = client.findClosest("pub", new Point(51.66117, 13.37654));
+
+            System.out.println(result.properties);
+            System.out.println(result.centroid);
+        } catch (ObjectNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+}

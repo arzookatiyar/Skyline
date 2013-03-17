@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+    Copyright 2004 Johan Känngård, http://dev.kanngard.net
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+<project name="Common build file" default="dist" basedir="">
+
+	<description>
+        This is a common Ant build file for projects.
+    </description>
+
+	<property name="path.bin" value="bin"/>
+	<property name="path.build" value="build"/>
+	<property name="path.build.lib" value="build/lib"/>
+	<property name="path.test.classes" value="build/test/classes"/>
+
+	<property name="path.dist" value="dist"/>
+	<property name="path.dist.classes" value="dist/classes"/>
+	<property name="path.dist.lib" value="dist/lib"/>
+	<property name="path.docs" value="docs"/>
+	<property name="path.docs.api" value="docs/api"/>
+	<property name="path.lib" value="lib"/>
+	<property name="path.src" value="src"/>
+	<property name="path.src.java" value="src/java"/>
+	<property name="path.src.java.test" value="src/java_test"/>
+	<property name="compile.debug" value="true"/>
+	<property name="compile.deprecation" value="true"/>
+	<property name="compile.jdk-version.source" value="1.5"/>
+	<property name="compile.jdk-version.target" value="1.5"/>
+	<property name="compile.optimize" value="true"/>
+	<property file="${basedir}/build.properties"/>
+	<property name="component.title" value="CloudMade Java API"/>
+	<property name="component.version" value="0.1.2"/>
+	<property name="component.name" value="cloudmade-java-api"/>
+
+	<path id="compile.classpath">
+		<fileset dir="${path.build.lib}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${path.lib}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="init" depends="" description="Initialize environment" >
+
+	</target>
+
+	<target name="project_prepare" description="Project-level prepare phase"/>
+
+	<target name="make_directories" depends="init" description="Creates all project directories">
+		<mkdir dir="${path.bin}"/>
+		<mkdir dir="${path.build}"/>
+		<mkdir dir="${path.build.lib}"/>
+		<mkdir dir="${path.dist}"/>
+		<mkdir dir="${path.dist.classes}"/>
+		<mkdir dir="${path.dist.lib}"/>
+		<mkdir dir="${path.docs}"/>
+		<mkdir dir="${path.docs.api}"/>
+		<mkdir dir="${path.lib}"/>
+		<mkdir dir="${path.src}"/>
+		<mkdir dir="${path.src.java}"/>
+		<mkdir dir="${path.src.java.test}"/>
+		<mkdir dir="${path.test.classes}"/>
+	</target>
+
+	<target name="prepare" depends="init, make_directories, project_prepare" description="Prepare build directory">
+
+	</target>
+
+	<target name="compile" depends="prepare" description="Compile source">
+		<javac debug="${compile.debug}" deprecation="${compile.deprecation}" destdir="${path.dist.classes}" target="${compile.jdk-version.target}" source="${compile.jdk-version.source}" optimize="${compile.optimize}" srcdir="${path.src}">
+			<classpath refid="compile.classpath"/>
+		</javac>
+	</target>
+
+	<target name="project_clean" description="Project-level prepare phase"/>
+
+	<target name="clean" depends="init,project_clean" description="Wipeout all generated files">
+		<delete dir="${path.dist.classes}"/>
+		<delete dir="${path.dist.lib}"/>
+		<delete dir="${path.docs.api}"/>
+	</target>
+
+	<target name="all" depends="clean,compile,jar,javadoc" description="Clean and compile all components"/>
+
+	<target name="javadoc" depends="compile" description="Create component Javadoc documentation">
+		<mkdir dir="${path.docs.api}"/>
+		<javadoc author="true" bottom="${component.title}" destdir="${path.docs.api}" 
+        	source="${compile.jdk-version.source}" classpathref="compile.classpath"
+        	doctitle="${component.title}" packagenames="com.cloudmade.*" 
+        	access="protected" sourcepath="${path.src.java}" version="true" 
+        	windowtitle="${component.title} (Version ${component.version})"/>
+	</target>
+
+	<target name="build-test" depends="compile" description="Compiles test components">
+		<javac debug="${compile.debug}" deprecation="${compile.deprecation}" 
+        	destdir="${path.test.classes}" target="${compile.jdk-version.target}" 
+        	source="${compile.jdk-version.source}" optimize="${compile.optimize}" 
+        	srcdir="${path.src.java.test}">
+			<classpath refid="compile.classpath"/>
+		</javac>
+	</target>
+	<target name="test" depends="build-test">
+		<junit printsummary="yes" haltonfailure="yes" showoutput="yes" >
+			<classpath>
+				<pathelement path="${compile.classpath}"/>
+				<pathelement location="${path.test.classes}"/>
+				<pathelement location="${path.dist.classes}"/>
+			</classpath>
+
+			<batchtest fork="yes" todir="${reports}/raw/">
+				<formatter type="plain"/>
+				<fileset dir="${path.src.java.test}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+
+	</target>
+	<target name="jar" depends="compile" description="Create binary and source distribution">
+		<copy file="LICENSE" todir="${path.dist.classes}" />
+		<copy file="LICENSE" todir="${path.src.java}" />
+
+		<jar basedir="${path.dist.classes}" jarfile="${path.dist.lib}/${component.name}-${component.version}.jar">
+			<include name="**/*" />
+		</jar>
+
+		<jar jarfile="${path.dist.lib}/${component.name}-${component.version}-src.zip">
+			<fileset dir="${path.src.java}"/>
+			<fileset dir="${path.src.java.test}"/>
+		</jar>
+	</target>
+	<target name="dist" depends="clean, jar, javadoc">
+		<zip destfile="${path.dist}/${component.name}-${component.version}-all.zip">
+			<zipfileset dir="${path.docs}" prefix="docs"/>
+			<zipfileset dir="${path.src.java}" includes="LICENSE"/>
+			<zipfileset dir="${path.lib}" excludes="junit*" prefix="lib"/>
+			<zipfileset dir="${path.dist.lib}" excludes="junit*"/>
+		</zip>
+	</target>
+</project>

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/java-lib/!svn/ver/18/trunk/lib
+END
+apache-mime4j-0.5.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/java-lib/!svn/ver/18/trunk/lib/apache-mime4j-0.5.jar
+END
+commons-codec-1.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/java-lib/!svn/ver/7/trunk/lib/commons-codec-1.3.jar
+END
+APACHE-License
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/java-lib/!svn/ver/18/trunk/lib/APACHE-License
+END
+httpclient-4.0-beta2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/java-lib/!svn/ver/18/trunk/lib/httpclient-4.0-beta2.jar
+END
+json.jar
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/java-lib/!svn/ver/18/trunk/lib/json.jar
+END
+commons-logging-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/java-lib/!svn/ver/18/trunk/lib/commons-logging-1.1.1.jar
+END
+junit-4.5.jar
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/java-lib/!svn/ver/7/trunk/lib/junit-4.5.jar
+END
+JSON-License
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/java-lib/!svn/ver/18/trunk/lib/JSON-License
+END
+httpmime-4.0-beta2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/java-lib/!svn/ver/18/trunk/lib/httpmime-4.0-beta2.jar
+END
+junit-cpl-v10.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/java-lib/!svn/ver/10/trunk/lib/junit-cpl-v10.html
+END
+httpcore-4.0-beta3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/java-lib/!svn/ver/18/trunk/lib/httpcore-4.0-beta3.jar
+END

@@ -1,0 +1,110 @@
+/*
+	Sorts the data wrt Comp comparator specified below.
+	Reads the data and assigns them IDs wrt the original order in the data.
+	Computes entropy.
+	Input: args[0] (original name)
+	Output: 
+	sorted data: args[0]_sort.data [writes with ID first]
+	time: TimeExact.txt [entropy and sort]
+*/
+
+import java.io.*;
+import java.util.*;	
+import java.lang.*;
+
+public class GenDataSort{
+	
+	public static void generate(String file){
+	
+		ArrayList<Tuple> data = new ArrayList<Tuple>();
+		Tuple t = null;
+		TreeSet<Tuple> sortedData=new TreeSet<Tuple>(new Comp());
+		try{
+		
+			FileWriter fstreamTime = new FileWriter("TimeWithoutGridding.txt", true);
+			BufferedWriter outTime = new BufferedWriter(fstreamTime);
+		
+			FileInputStream fstream = new FileInputStream(file);
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			
+			String temp;
+			int ID=0;
+			while((temp=br.readLine())!=null) {
+				t = new Tuple(temp, ID);
+				data.add(t);
+				ID++;
+			}
+			
+			//write original file name
+			outTime.write(file+"\n");
+			//write #dimensions #records
+			outTime.write(""+ t.rec.length+" "+data.size()+" ");
+		//}catch(Exception e){System.out.println("GenDataSort:reading data"+e);}		
+		
+		//compute entropy
+		long startTime = System.nanoTime();
+		Tuple.computeEntropy(data);
+		long endTime = System.nanoTime();
+		
+		//try{
+
+			FileWriter fstream1 = new FileWriter("TimeExact.txt", true);
+			BufferedWriter out1 = new BufferedWriter(fstream1);
+			
+			//write time#entropy
+			outTime.write((endTime-startTime)+" ");
+			
+			out1.write("file:"+file+"\n");
+			out1.write("time:Entropy compute:"+(endTime-startTime)+"\n");
+		
+			//size
+			out1.write("dataSize:"+data.size()+"\n");
+			//sorting
+			startTime = System.nanoTime();
+			sortedData.addAll(data);
+			endTime = System.nanoTime();
+
+			//write time#sorting
+			outTime.write((endTime-startTime)+" ");
+			outTime.close();
+
+			out1.write("time:sorting:"+(endTime-startTime)+"\n\n");
+			out1.close();
+		}catch(Exception e){System.out.println("Gendatasort:sorting"+e);}
+		
+		
+		
+				
+		try{
+			FileWriter fstream = new FileWriter(file+"_sort.data");
+			BufferedWriter out = new BufferedWriter(fstream);	
+			Iterator I = sortedData.iterator();
+			while(I.hasNext()){
+				t = (Tuple)(I.next());
+				t.writeToFile(out);	//writing with id
+			}
+			out.close();
+			
+		}catch(Exception e){System.out.println("generate() "+e);}
+		return;
+	}
+	
+
+	public static void main(String args[]) {
+		generate(args[0]);
+	}
+	
+	
+}
+
+class Comp implements Comparator{
+	public int compare(Object a, Object b){
+		int i=0;
+		Tuple A=(Tuple)a;
+		Tuple B=(Tuple)b;
+		if(A.sum<=B.sum)
+			return -1;
+		return 1;
+	} 
+}
