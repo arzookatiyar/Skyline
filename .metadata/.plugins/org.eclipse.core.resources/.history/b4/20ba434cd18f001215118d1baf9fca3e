@@ -347,45 +347,31 @@ public class Example2_n_revised {
 	    			}
 	        		
 	        			if (j >= results11.found && j<(results11.found + results12.found)) {
-	        				
-		    				if (i >= results11.found && i<(results11.found + results12.found)) {
-		    					if (common_ids2<=2) {
-		    						++counter;
-		    						System.out.println("counter now increased "+counter);
-		    						array_dist[counter] = (int)route.summary.totalDistance;
-		    						array_id[counter] = (results12.results[j-(results11.found)]).id;	    						
-		    					}
-		    				}
-		    				else {
-		    					if (common_ids2 <= 1) {
-		    						++counter;
-		    						System.out.println("counter now increased "+counter);
-		    						array_dist[counter] = (int)route.summary.totalDistance;
-		    						array_id[counter] = (results12.results[j-(results11.found)]).id;	    							    						
-		    					}
-		    				}
+	            			if (common_ids2<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+	            				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
+	            				++counter;
+	            				System.out.println("counter now increased "+counter);
+	            				array_dist[counter] = (int)route.summary.totalDistance;
+	            				//array_id[counter] = (results11.results[j]).id;
+	            				array_id[counter] = (results12.results[j-(results11.found)]).id;
+	            			}
 	        			}
-
 	    			    if (j >= (results11.found + results12.found)) {
-		    				if (i >= (results11.found + results12.found)) {
-		    					if (common_ids3<=2) {
-		    						++counter;
-		    						System.out.println("counter now increased "+counter);
-		    						array_dist[counter] = (int)route.summary.totalDistance;
-		    						array_id[counter] = (results13.results[j-(results11.found+results12.found)]).id;	    						
-		    					}
-		    				}
-		    				else {
-		    					if (common_ids3 <= 1) {
-		    						++counter;
-		    						System.out.println("counter now increased "+counter);
-		    						array_dist[counter] = (int)route.summary.totalDistance;
-		    						array_id[counter] = (results13.results[j-(results11.found+results12.found)]).id;	    							    						
-		    					}	    			    		    			    	
-		    				}	        				
+	            			if (common_ids3<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+	            				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
+	            				++counter;
+	            				System.out.println("counter now increased "+counter);
+	            				array_dist[counter] = (int)route.summary.totalDistance;
+	            				//array_id[counter] = (results11.results[j]).id;
+	            				array_id[counter] = (results13.results[j-(results11.found+results12.found)]).id;
+	            			}
+	    			    	
+	    			    }
+	    			    
+	        				
 	        			}
 	        			
-	        						
+	    			    			
 	  /*  			if (common_ids<=2) { //Ignore only when the cafe belongs to the list of the cafes!
 	    				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
 	    				++counter;

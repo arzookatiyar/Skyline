@@ -364,7 +364,6 @@ public class Example2_n_revised {
 		    						array_id[counter] = (results12.results[j-(results11.found)]).id;	    							    						
 		    					}
 		    				}
-	        			}
 
 	    			    if (j >= (results11.found + results12.found)) {
 		    				if (i >= (results11.found + results12.found)) {
@@ -381,11 +380,12 @@ public class Example2_n_revised {
 		    						System.out.println("counter now increased "+counter);
 		    						array_dist[counter] = (int)route.summary.totalDistance;
 		    						array_id[counter] = (results13.results[j-(results11.found+results12.found)]).id;	    							    						
-		    					}	    			    		    			    	
+		    					}
+	    			    		    			    	
 		    				}	        				
 	        			}
 	        			
-	        						
+	    			    			
 	  /*  			if (common_ids<=2) { //Ignore only when the cafe belongs to the list of the cafes!
 	    				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
 	    				++counter;
