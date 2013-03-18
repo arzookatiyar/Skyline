@@ -11,10 +11,10 @@ class Relations_5 {
     static ArrayList type4_list = new ArrayList();
     static ArrayList type5_list = new ArrayList();
     static int g_counter = 0;
-	static String folder = "Sample5_simple5/";
-	static int number = 5;
+	static String folder = "Samplestats5_10/";
+	static int number = 10;
 
-    public static void main(String args[]) throws IOException {
+    public static void find_Relations() throws IOException {
 	FileInputStream stream = new FileInputStream(folder+"data2_"+number+".txt");
 	DataInputStream in = new DataInputStream(stream);
 	BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -253,149 +253,190 @@ class Relations_5 {
 	bw4.close();
 	
 	
-
-	/* When the source is one of the nodes in the graph then the file will only contain a id in the file. 
-	   Else the relation file will be complete!! */
-	/* since the type is decided even for the 1st case, we will need to define a relation after we know the sequence of the types in the path*/
-	
-	stream = new FileInputStream(folder+"relation_s"+number+".txt");
-	in = new DataInputStream(stream);
-	br = new BufferedReader(new InputStreamReader(in));
-	
-	String[] line = br.readLine().split("\t");
-	br.close();
-	if (line.length == 1) {
-	    fw = new FileWriter(folder+"relationchng_s"+number+".txt");
-	    bw2 = new BufferedWriter(fw);
-	    //for(int j=0; j<type1_list.size(); j++) {
-	    //int search_id = (Integer)type1_list.get(j);
-	    int search_id = Integer.parseInt(line[0]);
-	   // System.out.println(search_id);
-	    if (table.get(search_id)!=null) {
-	    	int counter = 0;
-		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
-			
-		    //int [][]neighbours_list = (int [][])table.get(search_id);
-		    //	System.out.println(((int [][])table.get(19514897))[i][0]+" "+((int [][])table.get(19514897))[i][1]+" "+((int [][])table.get(search_id)).length);
-		    if ((int [][])table.get(search_id) != null) {
-			if (source_type == 1) {
-			    if (!type1_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-			if (source_type == 2) {
-			    if (!type2_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-			if (source_type == 3) {
-			    if (!type3_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-
-			if (source_type == 4) {
-			    if (!type4_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-
-			if (source_type == 5) {
-			    if (!type5_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-
-			
-			//System.out.println("Enters");
-			//bw.write("1233");
-			//bw2.write(String.valueOf(search_id));
-			//bw2.write("\t");
-			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][0]));
-			bw2.write("\t");
-			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][1]));
-			bw2.write("\t");
-			bw2.write(String.valueOf(counter));
-			bw2.write("\n");
-			++counter;
-		    }
-		}
-	    }
-	    // }	
-	    bw2.close();
-	    	    
-	}
-	else {
-	    //the relation is already prepared then in this case we need to keep only those s->n where n belongs to the first type
-	    
-	    
-	}
-
-	/* When the destination is one of the nodes in the graph then the file will only contain a id in the file. 
-	   Else the relation file will be complete!! */
-	/* since the type is decided even for the 1st case, we will need to define a relation after we know the sequence of the types in the path*/
-	
-	stream = new FileInputStream(folder+"relation_d"+number+".txt");
-	in = new DataInputStream(stream);
-	br = new BufferedReader(new InputStreamReader(in));
-	
-	line = br.readLine().split("\t");
-	br.close();
-	if (line.length == 1) {
-	//	System.out.println("DESTINATION....."+dest_type);
-	    fw = new FileWriter(folder+"relationchng_d"+number+".txt");
-	    bw2 = new BufferedWriter(fw);
-	    //for(int j=0; j<type1_list.size(); j++) {
-	    //int search_id = (Integer)type1_list.get(j);
-	    int search_id = Integer.parseInt(line[0]);
-	  //  System.out.println(search_id);
-	    if (table.get(search_id)!=null) {
-		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
-		    //int [][]neighbours_list = (int [][])table.get(search_id);
-		    //	System.out.println(((int [][])table.get(19514897))[i][0]+" "+((int [][])table.get(19514897))[i][1]+" "+((int [][])table.get(search_id)).length);
-			//System.out.println("Table not empty!!");
-		    if ((int [][])table.get(search_id) != null) {
-			if (dest_type == 1) {
-			    if (!type1_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-			if (dest_type == 2) {
-			    if (!type2_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-			if (dest_type == 3) {
-			    if (!type3_list.contains(((int [][])table.get(search_id))[i][0])){
-			    	//System.out.println("not contained ");
-				continue;
-			    }
-			}
-			
-			if (dest_type == 4) {
-			    if (!type4_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-
-			if (dest_type == 5) {
-			    if (!type5_list.contains(((int [][])table.get(search_id))[i][0]))
-				continue;
-			}
-
-
-			//System.out.println("Enters");
-			//bw.write("1233");
-			//bw2.write(String.valueOf(search_id));
-			//bw2.write("\t");
-			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][0]));
-			bw2.write("\t");
-			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][1]));
-			//bw2.write("\t");
-			//bw2.write((prob_list.get(((int [][])table.get(search_id))[i][2])).toString());
-			bw2.write("\n");
-		    }
-		}
-	    }
-	    // }	
-	    bw2.close();	    
-	}
-	else {	    
-	    //the relation is already prepared then in this case we need to keep only those s->n where n belongs to the first type	    
-	    
-	}
-	
     }
-}
+    
+    
+    public static void update_sd() throws IOException{
+    	
+    	/* When the source is one of the nodes in the graph then the file will only contain a id in the file. 
+ 	   Else the relation file will be complete!! */
+ 	/* since the type is decided even for the 1st case, we will need to define a relation after we know the sequence of the types in the path*/
+    	
+       	
+    	FileInputStream stream = new FileInputStream(folder+"relation_s"+number+".txt");
+    	DataInputStream in = new DataInputStream(stream);
+    	BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    	
+    	FileWriter fw;
+    	BufferedWriter bw2;
+
+ 	 	
+ 	String[] line = br.readLine().split("\t");
+ 	br.close();
+ 	if (line.length == 1) {
+ 	    fw = new FileWriter(folder+"relationchng_s"+number+".txt");
+ 	    bw2 = new BufferedWriter(fw);
+ 	    //for(int j=0; j<type1_list.size(); j++) {
+ 	    //int search_id = (Integer)type1_list.get(j);
+ 	    int search_id = Integer.parseInt(line[0]);
+ 	    int source_type = -1;
+	    if (type1_list.contains(search_id))
+ 	    	source_type = 1;
+ 	    else if (type2_list.contains(search_id))
+ 	    	source_type = 2;
+ 	   else if (type3_list.contains(search_id))
+	    	source_type = 3;
+	    else if (type4_list.contains(search_id))
+ 	    	source_type = 4;
+ 	   else if (type5_list.contains(search_id))
+	    	source_type = 5;
+ 	    
+ 	   // System.out.println(search_id);
+ 	    if (table.get(search_id)!=null) {
+ 	    	int counter = 0;
+ 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
+ 			
+ 		    //int [][]neighbours_list = (int [][])table.get(search_id);
+ 		    //	System.out.println(((int [][])table.get(19514897))[i][0]+" "+((int [][])table.get(19514897))[i][1]+" "+((int [][])table.get(search_id)).length);
+ 		    if ((int [][])table.get(search_id) != null) {
+ 			if (source_type == 1) {
+ 			    if (!type1_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+ 			if (source_type == 2) {
+ 			    if (!type2_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+ 			if (source_type == 3) {
+ 			    if (!type3_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+
+ 			if (source_type == 4) {
+ 			    if (!type4_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+
+ 			if (source_type == 5) {
+ 			    if (!type5_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+
+ 			
+ 			//System.out.println("Enters");
+ 			//bw.write("1233");
+ 			//bw2.write(String.valueOf(search_id));
+ 			//bw2.write("\t");
+ 			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][0]));
+ 			bw2.write("\t");
+ 			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][1]));
+ 			bw2.write("\t");
+ 			bw2.write(String.valueOf(counter));
+ 			bw2.write("\n");
+ 			++counter;
+ 		    }
+ 		}
+ 	    }
+ 	    // }	
+ 	    bw2.close();
+ 	    	    
+ 	}
+ 	else {
+ 	    //the relation is already prepared then in this case we need to keep only those s->n where n belongs to the first type
+ 	    
+ 	    
+ 	}
+
+ 	/* When the destination is one of the nodes in the graph then the file will only contain a id in the file. 
+ 	   Else the relation file will be complete!! */
+ 	/* since the type is decided even for the 1st case, we will need to define a relation after we know the sequence of the types in the path*/
+ 	
+ 	stream = new FileInputStream(folder+"relation_d"+number+".txt");
+ 	in = new DataInputStream(stream);
+ 	br = new BufferedReader(new InputStreamReader(in));
+ 	
+ 	line = br.readLine().split("\t");
+ 	br.close();
+ 	if (line.length == 1) {
+ 	//	System.out.println("DESTINATION....."+dest_type);
+ 	    fw = new FileWriter(folder+"relationchng_d"+number+".txt");
+ 	    bw2 = new BufferedWriter(fw);
+ 	    //for(int j=0; j<type1_list.size(); j++) {
+ 	    //int search_id = (Integer)type1_list.get(j);
+ 	    int search_id = Integer.parseInt(line[0]);
+ 	    
+ 	    int dest_type = -1;
+	    if (type1_list.contains(search_id))
+ 	    	dest_type = 1;
+ 	    else if (type2_list.contains(search_id))
+ 	    	dest_type = 2;
+ 	   else if (type3_list.contains(search_id))
+	    	dest_type = 3;
+	    else if (type4_list.contains(search_id))
+ 	    	dest_type = 4;
+ 	   else if (type5_list.contains(search_id))
+	    	dest_type = 5;
+ 	    
+ 	  //  System.out.println(search_id);
+ 	    if (table.get(search_id)!=null) {
+ 		for (int i=0; i<((int [][])table.get(search_id)).length; i++) {
+ 		    //int [][]neighbours_list = (int [][])table.get(search_id);
+ 		    //	System.out.println(((int [][])table.get(19514897))[i][0]+" "+((int [][])table.get(19514897))[i][1]+" "+((int [][])table.get(search_id)).length);
+ 			//System.out.println("Table not empty!!");
+ 		    if ((int [][])table.get(search_id) != null) {
+ 			if (dest_type == 1) {
+ 			    if (!type1_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+ 			if (dest_type == 2) {
+ 			    if (!type2_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+ 			if (dest_type == 3) {
+ 			    if (!type3_list.contains(((int [][])table.get(search_id))[i][0])){
+ 			    	//System.out.println("not contained ");
+ 				continue;
+ 			    }
+ 			}
+ 			
+ 			if (dest_type == 4) {
+ 			    if (!type4_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+
+ 			if (dest_type == 5) {
+ 			    if (!type5_list.contains(((int [][])table.get(search_id))[i][0]))
+ 				continue;
+ 			}
+
+
+ 			//System.out.println("Enters");
+ 			//bw.write("1233");
+ 			//bw2.write(String.valueOf(search_id));
+ 			//bw2.write("\t");
+ 			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][0]));
+ 			bw2.write("\t");
+ 			bw2.write(String.valueOf(((int [][])table.get(search_id))[i][1]));
+ 			//bw2.write("\t");
+ 			//bw2.write((prob_list.get(((int [][])table.get(search_id))[i][2])).toString());
+ 			bw2.write("\n");
+ 		    }
+ 		}
+ 	    }
+ 	    // }	
+ 	    bw2.close();	    
+ 	}
+ 	else {	    
+ 	    //the relation is already prepared then in this case we need to keep only those s->n where n belongs to the first type	    
+ 	    
+ 	}
+ 	
+    	
+    }
+    
+    public static void main(String args[]) throws IOException{
+    	find_Relations();
+    	update_sd();
+    }
+    
+    }

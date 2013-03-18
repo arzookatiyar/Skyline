@@ -4,8 +4,8 @@ import java.util.TreeSet;
 
 class Normal_Skyline {
 	
-	static String folder = "Samplestats_5/";
-	static int number = 5;
+	static String folder = "Samplestats5_10/";
+	static int number = 10;
 	
 	public static ArrayList<Tuple> returnlist(String filename, boolean is_route, boolean is_dest) throws IOException{
 		FileInputStream stream = new FileInputStream(filename);
@@ -221,8 +221,8 @@ class Normal_Skyline {
 			out.write("\n");
 		}
 	    out.close();
-		//System.out.println("Printing the final path");
-		//Aggregated_Skyline.printPath_list(path_list);
+	//	System.out.println("Printing the final path-------------------------Normal Skyline");
+	//	Aggregated_Skyline.printPath_list(path_list);
 		return_sizes.add(finalpaths.size());
 		
 		return return_sizes;

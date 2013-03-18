@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 class Aggregated_Skyline {
-	static String folder = "Samplestats_5/";;
-	static int number = 5;
+	static String folder = "Samplestats5_10/";;
+	static int number = 10;
 	public static void printPath_list(ArrayList<ArrayList<Integer>> path_list) {
 		System.out.println("Printing path list.....");
 		for (int i=0; i<path_list.size(); i++) {
@@ -209,7 +209,7 @@ class Aggregated_Skyline {
 		out.write("\n");
 	}
     out.close();
-	//System.out.println("Printing the final path");
+	//System.out.println("Printing the final path---------------------___Aggregated Skyline");
 	//printPath_list(path_list);
     	return_sizes.add(finalpaths.size());
     	return return_sizes;
