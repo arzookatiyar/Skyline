@@ -288,7 +288,7 @@ class SimpleJoin {
 	
 	br1.close();
 
-//	out.close();
+	out.close();
 	return final_join;
     }
     

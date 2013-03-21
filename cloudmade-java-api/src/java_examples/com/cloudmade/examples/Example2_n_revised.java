@@ -21,7 +21,7 @@ import java.util.Hashtable;
 
 public class Example2_n_revised {
 	static Hashtable prob_table = new Hashtable();
-	static int nodes = 10;
+	static int nodes = 30;
 	static String folder = "Sample_revised";
 	
 	

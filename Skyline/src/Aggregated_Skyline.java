@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 class Aggregated_Skyline {
-	static String folder = "Samplestats5_10/";;
+	static String folder = "Sample10_revised10/";
 	static int number = 10;
 	public static void printPath_list(ArrayList<ArrayList<Integer>> path_list) {
 		System.out.println("Printing path list.....");
@@ -167,6 +167,7 @@ class Aggregated_Skyline {
 		}
 	    }
 	    return_sizes.add(AB.size());
+	    //System.out.print(AB.size()+"  ");
 	    //Write this into a file
 	    /* Can improve efficiency by not writing the answers everytime to the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 	    
@@ -211,11 +212,19 @@ class Aggregated_Skyline {
     out.close();
 	//System.out.println("Printing the final path---------------------___Aggregated Skyline");
 	//printPath_list(path_list);
+    	//System.out.print(finalpaths.size());
+    	//System.out.println();
     	return_sizes.add(finalpaths.size());
     	return return_sizes;
     }
     
     public static void main(String args[]) throws IOException {
-    	find_aggregatedskyline();
+    	Relations s = new Relations();
+    	s.find_Relations();
+    	
+    	for (int i=0; i<10; i++){
+    		s.update_sd();
+    		find_aggregatedskyline();
+    	}
     }
 }

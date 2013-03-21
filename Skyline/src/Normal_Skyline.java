@@ -4,7 +4,7 @@ import java.util.TreeSet;
 
 class Normal_Skyline {
 	
-	static String folder = "Samplestats5_10/";
+	static String folder = "Sample10_revised10/";
 	static int number = 10;
 	
 	public static ArrayList<Tuple> returnlist(String filename, boolean is_route, boolean is_dest) throws IOException{

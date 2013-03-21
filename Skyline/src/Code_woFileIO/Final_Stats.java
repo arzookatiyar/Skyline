@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 class Final_Stats {
-	static String folder = "Samplestats_5/";
-	static int number = 5;
+	static String folder = "SamplestatswoIO_10/";
+	static int number = 10;
     static ArrayList nodes_list = new ArrayList();
 
 
@@ -31,6 +31,9 @@ class Final_Stats {
 		    bw2.write(String.valueOf(nodes_list.get(i)));
 		    bw2.close();
 		    
+		    Relations s = new Relations();
+		    s.find_Relations();
+		    
 			for (int j=0; j<nodes_list.size(); j++) {
 		    //for (int j=13; j<15; j++) {
 				System.out.println(i+"   "+j);
@@ -39,7 +42,8 @@ class Final_Stats {
 				    BufferedWriter bw1 = new BufferedWriter(fw1);
 				    bw1.write(String.valueOf(nodes_list.get(j)));
 				    bw1.close();
-				    Relations.find_Relations();
+				  //  Relations.find_Relations();
+				    s.update_sd();
 				    long start_time1 = System.nanoTime(); 
 				    ArrayList number_results1 = Aggregated_Skyline.find_aggregatedskyline();				    
 				    long end_time1 = System.nanoTime();

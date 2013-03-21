@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 class Final_Stats {
-	static String folder = "Samplestats1_30/";
+	static String folder = "Sample_revised30/";
 	static int number = 30;
     static ArrayList nodes_list = new ArrayList();
 
@@ -23,7 +23,9 @@ class Final_Stats {
 			nodes_list.add(Integer.parseInt(str_array[0]));
 		}
 		
-	    Relations.find_Relations();
+	    Relations s = new Relations();
+	    s.find_Relations();
+	    
 		
 		for (int i=0; i<nodes_list.size(); i++) {
 		//for (int i=10; i<11; i++) {
@@ -40,7 +42,7 @@ class Final_Stats {
 				    BufferedWriter bw1 = new BufferedWriter(fw1);
 				    bw1.write(String.valueOf(nodes_list.get(j)));
 				    bw1.close();
-				    Relations.update_sd();
+				    s.update_sd();
 				    long start_time1 = System.nanoTime(); 
 				    ArrayList number_results1 = Aggregated_Skyline.find_aggregatedskyline();				    
 				    long end_time1 = System.nanoTime();

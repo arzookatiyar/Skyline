@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 class Aggregated_Skyline {
-	static String folder = "Samplestats_5/";;
-	static int number = 5;
+	static String folder = "SamplestatswoIO_10/";;
+	static int number = 10;
 	public static void printPath_list(ArrayList<ArrayList<Integer>> path_list) {
 		System.out.println("Printing path list.....");
 		for (int i=0; i<path_list.size(); i++) {
@@ -76,7 +76,7 @@ class Aggregated_Skyline {
 	    path_list.add(t.path_id, new_pathlist);
 	}
 	
-//	br_id.close(); //Closing file
+	//br_id.close(); //Closing file
 	
 //	printPath_list(path_list);
 	
@@ -226,6 +226,13 @@ class Aggregated_Skyline {
     }
     
     public static void main(String args[]) throws IOException {
-    	find_aggregatedskyline();
+    	Relations s = new Relations();
+    	s.find_Relations();
+    	
+    	for (int i=0; i<10; i++){
+    		s.update_sd();
+    		find_aggregatedskyline();
+    	}
+
     }
 }

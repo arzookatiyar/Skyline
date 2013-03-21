@@ -5,8 +5,8 @@ import java.util.TreeSet;
 
 class Normal_Skyline {
 	
-	static String folder = "Samplestats_5/";
-	static int number = 5;
+	static String folder = "SamplestatswoIO_10/";
+	static int number = 10;
 	
 	public static ArrayList<Tuple> returnlist(String filename, boolean is_route, boolean is_dest) throws IOException{
 		FileInputStream stream = new FileInputStream(filename);
