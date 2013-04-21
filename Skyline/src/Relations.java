@@ -2,6 +2,11 @@ import java.io.*;
 import java.util.Hashtable;
 import java.util.ArrayList;
 
+/*
+ * TODO : Here the destination relations is not not correct for the id case. Change it!! 
+ * */
+
+
 class Relations {
     Hashtable table = new Hashtable();
     ArrayList prob_list = new ArrayList();
@@ -11,8 +16,8 @@ class Relations {
     Hashtable node_table = new Hashtable();
     ArrayList node_list = new ArrayList();
     int g_counter = 0;
-	static String folder = "Sample_revised30/";
-	static int number = 30;
+	static String folder = "Temp10/";
+	static int number = 10;
     int counter1 = 0;
     int [][]map_array = new int[number*3][number*3];
 
@@ -67,7 +72,7 @@ class Relations {
 			if (map_array[i][j] > 0) {
 				if (map_array[j][i] == 0) {
 					++counter2;
-					map_array[j][i] = map_array[i][j];
+		//			map_array[j][i] = map_array[i][j];  ///HAVE CHANGED HERE!
 				}
 			}
 		}
@@ -258,13 +263,16 @@ class Relations {
     	
     	FileWriter fw;
     	BufferedWriter bw2;
- 	
- 	String[] line = br.readLine().split("\t");
- 	br.close();
- 	if (line.length == 1) {
- 		int counter = 0;
+    	
  	    fw = new FileWriter(folder+"relationchng_s"+number+".txt");
  	    bw2 = new BufferedWriter(fw);
+
+ 	String strLine = br.readLine();
+ 	String[] line = strLine.split("\t");
+ 	
+ 	int counter = 0;
+ 	if (line.length == 1) {
+ 		br.close();
  	    //for(int j=0; j<type1_list.size(); j++) {
  	    //int search_id = (Integer)type1_list.get(j);
  	    int search_id = Integer.parseInt(line[0]);
@@ -341,10 +349,40 @@ class Relations {
  	}
  	else {
  	    //the relation is already prepared then in this case we need to keep only those s->n where n belongs to the first type
- 	    
- 	    
- 	}
+ 	    //line contains the destination id and the distance. We need to keep only those entries which have the same type as the source type
+ 		do {
+ 			String []lines = strLine.split("\t");
 
+ 			if (source_type == 1) {
+ 			    if (!type1_list.contains(Integer.parseInt(lines[0]))){
+ 			    	//System.out.println("Does not contain. ");
+ 				continue;
+ 			    }
+ 			}
+ 			if (source_type == 2) {
+ 			    if (!type2_list.contains(Integer.parseInt(lines[0])))
+ 				continue;
+ 			}
+ 			if (source_type == 3) {
+ 			    if (!type3_list.contains(Integer.parseInt(lines[0])))
+ 				continue;
+ 			}
+ 			
+ 			bw2.write(lines[0]);
+ 			bw2.write("\t");
+ 			bw2.write(lines[1]);
+ 			bw2.write("\t");
+ 			bw2.write(String.valueOf(counter));
+ 			bw2.write("\n");
+// 			map_array[(Integer)node_table.get(search_id)][(Integer)node_table.get(((int [][])table.get(search_id))[i][0])] = 0;
+ 			++counter;
+
+ 			
+ 			
+ 		}while((strLine=br.readLine())!=null);
+ 		bw2.close();
+ 	}
+ 	br.close();
  	/* When the destination is one of the nodes in the graph then the file will only contain a id in the file. 
  	   Else the relation file will be complete!! */
  	/* since the type is decided even for the 1st case, we will need to define a relation after we know the sequence of the types in the path*/
@@ -353,12 +391,15 @@ class Relations {
  	in = new DataInputStream(stream);
  	br = new BufferedReader(new InputStreamReader(in));
  	
- 	line = br.readLine().split("\t");
- 	br.close();
- 	if (line.length == 1) {
- 		//System.out.println("DESTINATION....."+dest_type);
- 	    fw = new FileWriter(folder+"relationchng_d"+number+".txt");
+	    fw = new FileWriter(folder+"relationchng_d"+number+".txt");
  	    bw2 = new BufferedWriter(fw);
+
+ 	strLine = br.readLine();
+ 	line = strLine.split("\t");
+ 	
+ 	if (line.length == 1) {
+ 		br.close();
+ 		//System.out.println("DESTINATION....."+dest_type);
  	    //for(int j=0; j<type1_list.size(); j++) {
  	    //int search_id = (Integer)type1_list.get(j);
  	    int search_id = Integer.parseInt(line[0]);
@@ -422,12 +463,41 @@ class Relations {
 				//map_array[index][i] = 0;	    			    		
 	    	}
 	    } 	    
- 	     	    
+	    br.close();
  	    bw2.close();	    
  	}
  	else {	    
  	    //the relation is already prepared then in this case we need to keep only those s->n where n belongs to the first type	    
- 	    
+		do {
+ 			String []lines = strLine.split("\t");
+
+ 			if (dest_type == 1) {
+ 			    if (!type1_list.contains(Integer.parseInt(lines[0]))){
+ 			    	//System.out.println("Does not contain. ");
+ 				continue;
+ 			    }
+ 			}
+ 			if (dest_type == 2) {
+ 			    if (!type2_list.contains(Integer.parseInt(lines[0])))
+ 				continue;
+ 			}
+ 			if (dest_type == 3) {
+ 			    if (!type3_list.contains(Integer.parseInt(lines[0])))
+ 				continue;
+ 			}
+ 			
+ 			bw2.write(lines[0]);
+ 			bw2.write("\t");
+ 			bw2.write(lines[1]);
+// 			bw2.write("\t");
+// 			bw2.write(String.valueOf(counter));
+ 			bw2.write("\n");
+// 			map_array[(Integer)node_table.get(search_id)][(Integer)node_table.get(((int [][])table.get(search_id))[i][0])] = 0;
+ 			++counter;
+			
+ 		}while((strLine=br.readLine())!=null);
+ 		bw2.close();
+ 		
  	}
     }
     

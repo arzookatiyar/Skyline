@@ -48,7 +48,35 @@ public class Example {
 	
 	
     public static void main(String args[]) throws IOException{
-	CMClient client = new CMClient("5c48343660fe4aa983946d44003b075f");
+    	
+    	CMClient client = new CMClient("5c48343660fe4aa983946d44003b075f");
+
+    	String folder = "../Skyline/";
+    	int number = 12;
+	    FileWriter fw1 = new FileWriter(folder+"relation_d"+number+".txt");
+	    BufferedWriter bw1 = new BufferedWriter(fw1);
+	    bw1.write("Writing to a test file");
+	    
+	    bw1.close();
+    	
+	//	System.out.println((results.results[i]).centroid+"  "+(results.results[j]).centroid);
+	try {
+		Route route1 = client.route (new Point(51.5137599, -0.1420200),
+				new Point(51.517009, -0.14248),
+                RouteType.CAR,
+                null,
+                null,
+                "en",
+                MeasureUnit.KM
+            );
+		System.out.println(route1.summary.totalDistance);
+		System.out.println(route1.geometry.points);
+
+	}
+	catch(Exception e) {
+		System.out.println("Route not found exception");
+	}
+    	
 	GeoResults results = client.find("Potsdamer Platz, Berlin, Germany", 2, 0, null, true, true, true);
 	GeoResult result = results.results[0];
 	System.out.println(result.properties);
@@ -57,14 +85,14 @@ public class Example {
 	try {
 	    results = client.find_range("cafe", new Point(51.51558,-0.141449), 50, 5000);
 	    result = results.results[1];
-	   // System.out.println(result.properties);
+	    System.out.println(result.properties);
 	    //System.out.println("id "+result.id);
 	   // System.out.println((Point)result.centroid);
 	    FileWriter fstream  = new FileWriter("data.txt");
 	    BufferedWriter out = new BufferedWriter(fstream);
 	    int []result_id = new int[results.found];
 	   // for (int i=0; i<results.found; i++) {
-	    for (int i=0; i<30; i++) {
+	    for (int i=0; i<3; i++) {
 	    	result = results.results[i];
 	    	result_id[i] =  result.id;
 	    	System.out.println(result.id+" "+result.properties);
@@ -73,7 +101,7 @@ public class Example {
 	    
 	    //for (int i=0; i<results.found; i++) {
 	    int counter1=0;
-	    for (int i=0; i<30; i++) {
+	    for (int i=0; i<3; i++) {
 	    	out.write("NEW\n");	
 	    	out.write(Integer.toString((results.results[i]).id));
 	    	out.write("\n");
@@ -81,7 +109,7 @@ public class Example {
 	    	int []array_id = new int[results.found];
 	    	int counter = 0;
 	    	//for (int j=0; j<results.found; j++) {
-	    	for (int j=0; j<30; j++) {
+	    	for (int j=0; j<3; j++) {
 	    		 try {
 	    			if (i != j) {
 	    			//System.out.println(i+"  "+j);

@@ -4,8 +4,8 @@ import java.util.TreeSet;
 
 class Normal_Skyline {
 	
-	static String folder = "Sample10_revised10/";
-	static int number = 10;
+	static String folder = "Sample_revised30/";
+	static int number = 30;
 	
 	public static ArrayList<Tuple> returnlist(String filename, boolean is_route, boolean is_dest) throws IOException{
 		FileInputStream stream = new FileInputStream(filename);
@@ -129,8 +129,16 @@ class Normal_Skyline {
 			    //full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, true);
 			    }
 			    else {
+			    	
+			    	int end_order = (Integer)join_order.get(i+1);
+			    	
+			    	String related_file = SimpleJoin.computeWithend(file_name, end_order, folder+"type"+join_order.get(i+1)+"_"+number+".txt");
 			    //System.out.println("Last stage "+file_name);
-				join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+			    //	System.out.println(end_order+"  order "+related_file);
+			    	join_file2 = SimpleJoin.computeSimpleJoin(related_file, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+
+			    //System.out.println("Last stage "+file_name);
+//				join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
 				//System.out.println(" compute full skyline true "+join_file1);
 				//System.out.println(" compute full skyline false "+join_file2);	
 				//full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);

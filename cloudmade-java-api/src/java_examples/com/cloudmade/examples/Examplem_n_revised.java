@@ -9,12 +9,14 @@ import com.cloudmade.api.geometry.Point;
 import com.cloudmade.api.routing.Route;
 import java.io.*;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.LinkedList;
 
 
 public class Examplem_n_revised {
 	static Hashtable prob_table = new Hashtable();
 	static int nodes = 30;
-	static String folder = "Sample30_revised";
+	static String folder = "NewSample30_revised";
 	
 	
 	public static int among_POI(int []array_id, int []check_id) {
@@ -25,7 +27,7 @@ public class Examplem_n_revised {
 					++count;
 			}
 		}
-		return count;	
+		return count;		
 	}
 	
 	public static void sort(int []array_dist, int []array_id, int counter) {
@@ -69,11 +71,18 @@ public class Examplem_n_revised {
 	System.out.println(result.centroid);	
 	System.out.println(result.geometry);	
 	try {
-		GeoResults results11 = client.find_range("cafe", new Point(51.51558,-0.141449), nodes, 5000);
+		/*GeoResults results11 = client.find_range("cafe", new Point(51.51558,-0.141449), nodes, 5000);
 	    GeoResults results12 = client.find_range("pub", new Point(51.51558,-0.141449), nodes, 5000);
 	    GeoResults results13 = client.find_range("hotel", new Point(51.51558,-0.141449), nodes, 5000);
 	    GeoResults results14 = client.find_range("atm", new Point(51.51558,-0.141449), nodes, 5000);
-	    GeoResults results15 = client.find_range("fuel", new Point(51.51558,-0.141449), nodes, 5000);
+	    GeoResults results15 = client.find_range("fuel", new Point(51.51558,-0.141449), nodes, 5000);*/
+	    
+	    GeoResults results11 = client.find_POI("cafe", new Point(40.3,-74.5), new Point(41.3,-73.5), 700); 
+	    GeoResults results12 = client.find_POI("hotel", new Point(40.3,-74.5), new Point(41.3,-73.5), 700);
+	    GeoResults results13 = client.find_POI("pub", new Point(40.3,-74.5), new Point(41.3,-73.5), 700);
+	    GeoResults results14 = client.find_POI("bank", new Point(40.3,-74.5), new Point(41.3,-73.5), 700);
+	    GeoResults results15 = client.find_POI("atm", new Point(40.3,-74.5), new Point(41.3,-73.5), 700);
+	    
 	    //result = results.results[1];
 	   // System.out.println(result.properties);
 	    //System.out.println("id "+result.id);
@@ -178,7 +187,7 @@ public class Examplem_n_revised {
 	    	System.out.println("initialised");
 	    	//for (int j=0; j<results.found; j++) {
 	    	for (int j=0; j<(results11.found+results12.found+results13.found+results14.found+results15.found); j++) {
-	    		//System.out.println(i+"  "+j+"  "+results11.found+" "+results12.found+" " +results13.found);
+	    		System.out.println(i+"  "+j);
 	    		 try {
 	    			//only to initialise
 	    			/*Route route = client.route ((Point)((results.results[0]).centroid),
@@ -514,12 +523,37 @@ public class Examplem_n_revised {
 	    			System.out.println(route.geometry.points);
 	    			
 	    		//	System.out.println((results.results[i]).centroid+"  "+(results.results[j]).centroid);
-	    			GeoResults results1 = client.present_along_route("cafe", route.geometry.points, 20, 30);
-	    			GeoResults results2 = client.present_along_route("pub", route.geometry.points, 20, 30);
-	    			GeoResults results3 = client.present_along_route("hotel", route.geometry.points, 20, 30);
-	    			GeoResults results4 = client.present_along_route("atm", route.geometry.points, 20, 30);
-	    			GeoResults results5 = client.present_along_route("fuel", route.geometry.points, 20, 30);
 	    			
+	    			List<Point> geometry = route.geometry.points;
+	    			
+	    			int curr_size = 0;
+	    			LinkedList new_list = new LinkedList();
+	    			
+	    			int common_ids1 = 0;
+	    			int common_ids2 = 0;
+	    			int common_ids3 = 0;
+	    			int common_ids4 = 0;
+	    			int common_ids5 = 0;
+
+	    			
+	    			for (int geo = 0; geo<geometry.size(); geo++) {
+	    				if (curr_size == 0) {
+	    					new_list = new LinkedList();
+	    				}
+	    				if (curr_size<100) {
+	    					new_list.add(geometry.get(geo));
+	    					++curr_size;
+	    				}
+	    				if (curr_size == 100 || geo==geometry.size()-1) {
+	    					curr_size = 0;	    					
+	    			
+	    			GeoResults results1 = client.present_along_route("cafe", new_list, 30, 500);
+	    			GeoResults results2 = client.present_along_route("hotel", new_list, 30, 500);
+	    			GeoResults results3 = client.present_along_route("pub", new_list, 30, 500);
+	    			GeoResults results4 = client.present_along_route("bank", new_list, 30, 500);
+	    			GeoResults results5 = client.present_along_route("atm", new_list, 30, 500);
+	    			
+	    			//System.out.println("Here");
 	    			//int []found_id = new int[results1.found+results2.found+results3.found+results4.found+results5.found];
 	    			
 	    			int []found_id1 = new int[results1.found];
@@ -549,12 +583,17 @@ public class Examplem_n_revised {
 	    			}
 	    			//result_id
 	    			//int common_ids = among_POI(result_id, found_id);
-	    			int common_ids1 = among_POI(result_id, found_id1);
-	    			int common_ids2 = among_POI(result_id, found_id2);
-	    			int common_ids3 = among_POI(result_id, found_id3);
-	    			int common_ids4 = among_POI(result_id, found_id4);
-	    			int common_ids5 = among_POI(result_id, found_id5);
+	    			common_ids1 += among_POI(result_id, found_id1);
+	    			common_ids2 += among_POI(result_id, found_id2);
+	    			common_ids3 += among_POI(result_id, found_id3);
+	    			common_ids4 += among_POI(result_id, found_id4);
+	    			common_ids5 += among_POI(result_id, found_id5);
 
+	    			
+	    				}	    		//condition count == 100 ends		
+	    			} //new_for ends
+
+	    			System.out.println("Common Ids "+common_ids1+"  "+common_ids2+"  "+common_ids3+"  "+common_ids4+"  "+common_ids5);
 	    			
 	    		//	System.out.println("In the route");
 	    			/*for (int k=0; k<results1.found; k++) {
@@ -712,7 +751,9 @@ public class Examplem_n_revised {
 	    				//counter=counter+1;
 	    				
 	    			}
-	    			}
+	    			
+	    			
+	    		 }
 	    		  catch (Exception e) {
 	    	           // e.printStackTrace();
 	    				System.out.println(e);

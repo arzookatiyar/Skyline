@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="10" version="2.0">
+<workbench progressCount="16" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="808" y="135">
 <fastViewData fastViewLocation="1024"/>
@@ -8,15 +8,17 @@
 </perspectiveBar>
 <coolbarLayout locked="0">
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="104" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="96" y="26"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
-<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="104" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="112" y="26"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="96" y="26"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="70" y="26"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="114" y="26"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="172" y="26"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -33,33 +35,83 @@
 <part id="3"/>
 <part id="4"/>
 <part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Examplem_n.java" partName="Examplem_n.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n.java" title="Examplem_n.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="25165" selectionTopPixel="12773"/>
-</editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Aggregated_Skyline.java" partName="Aggregated_Skyline.java" path="/users/mti/arzoo/workspace/Skyline/src/Aggregated_Skyline.java" title="Aggregated_Skyline.java" tooltip="Skyline/src/Aggregated_Skyline.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Skyline/src/Aggregated_Skyline.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="167" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="110" selectionOffset="8372" selectionTopPixel="3125"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Normal_Skyline.java" partName="Normal_Skyline.java" path="/users/mti/arzoo/workspace/Skyline/src/Normal_Skyline.java" title="Normal_Skyline.java" tooltip="Skyline/src/Normal_Skyline.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Skyline/src/Normal_Skyline.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="69" selectionOffset="98" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Relations.java" partName="Relations.java" path="/users/mti/arzoo/workspace/Skyline/src/Relations.java" title="Relations.java" tooltip="Skyline/src/Relations.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Skyline/src/Relations.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="547" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Relations_5.java" partName="Relations_5.java" path="/users/mti/arzoo/workspace/Skyline/src/Relations_5.java" title="Relations_5.java" tooltip="Skyline/src/Relations_5.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Skyline/src/Relations_5.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="994" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GenerateRelations.java" partName="GenerateRelations.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/GenerateRelations.java" title="GenerateRelations.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/GenerateRelations.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/GenerateRelations.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="145" selectionOffset="6310" selectionTopPixel="3282"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Final_Stats5.java" partName="Final_Stats5.java" path="/users/mti/arzoo/workspace/Skyline/src/Final_Stats5.java" title="Final_Stats5.java" tooltip="Skyline/src/Final_Stats5.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Skyline/src/Final_Stats5.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2555" selectionTopPixel="626"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Final_Stats.java" partName="Final_Stats.java" path="/users/mti/arzoo/workspace/Skyline/src/Final_Stats.java" title="Final_Stats.java" tooltip="Skyline/src/Final_Stats.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Skyline/src/Final_Stats.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="436" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Example2_n_revised.java" partName="Example2_n_revised.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2_n_revised.java" title="Example2_n_revised.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2_n_revised.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2_n_revised.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="828" selectionTopPixel="357"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="findCover.java" partName="findCover.java" path="/users/mti/arzoo/workspace/Vertex_Cover/src/findCover.java" title="findCover.java" tooltip="Vertex_Cover/src/findCover.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Vertex_Cover/src/findCover.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="193" selectionOffset="260" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Streaming_VertexCover.java" partName="Streaming_VertexCover.java" path="/users/mti/arzoo/workspace/Vertex_Cover/src/Streaming_VertexCover.java" title="Streaming_VertexCover.java" tooltip="Vertex_Cover/src/Streaming_VertexCover.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Vertex_Cover/src/Streaming_VertexCover.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5113" selectionTopPixel="2340"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DistanceGraph.java" partName="DistanceGraph.java" path="/users/mti/arzoo/workspace/Vertex_Cover/src/DistanceGraph.java" title="DistanceGraph.java" tooltip="Vertex_Cover/src/DistanceGraph.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Vertex_Cover/src/DistanceGraph.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2969" selectionTopPixel="148"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexStructure.java" partName="IndexStructure.java" path="/users/mti/arzoo/workspace/Vertex_Cover/src/IndexStructure.java" title="IndexStructure.java" tooltip="Vertex_Cover/src/IndexStructure.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Vertex_Cover/src/IndexStructure.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="6141" selectionOffset="0" selectionTopPixel="1493"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="NeighborIndex.class" partName="NeighborIndex.class" title="NeighborIndex.class" tooltip="org.jgrapht.alg.NeighborIndex" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=Vertex_Cover/\/users\/mti\/arzoo\/workspace\/jgrapht\/jgrapht-core\/src\/main\/java\/org.jar&lt;org.jgrapht.alg(NeighborIndex.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="46" selectionOffset="5993" selectionTopPixel="2244"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="Graphs.class" partName="Graphs.class" title="Graphs.class" tooltip="org.jgrapht.Graphs" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=Vertex_Cover/\/users\/mti\/arzoo\/workspace\/jgrapht\/jgrapht-core\/src\/main\/java\/org.jar&lt;org.jgrapht(Graphs.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="47" selectionOffset="10468" selectionTopPixel="4012"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexStructure_default.java" partName="IndexStructure_default.java" path="/users/mti/arzoo/workspace/Vertex_Cover/src/IndexStructure_default.java" title="IndexStructure_default.java" tooltip="Vertex_Cover/src/IndexStructure_default.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Vertex_Cover/src/IndexStructure_default.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4893" selectionTopPixel="1720"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GetRoute.java" partName="GetRoute.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/GetRoute.java" title="GetRoute.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/GetRoute.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/GetRoute.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="613" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CMClient.java" partName="CMClient.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java/com/cloudmade/api/CMClient.java" title="CMClient.java" tooltip="cloudmade-java-api/src/java/com/cloudmade/api/CMClient.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java/com/cloudmade/api/CMClient.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15217" selectionTopPixel="5703"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Example2.java" partName="Example2.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2.java" title="Example2.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="108" selectionOffset="11299" selectionTopPixel="4389"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="getPOI.java" partName="getPOI.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/getPOI.java" title="getPOI.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/getPOI.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/getPOI.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3619" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Examplem_n_revised.java" partName="Examplem_n_revised.java" path="/users/mti/arzoo/workspace/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n_revised.java" title="Examplem_n_revised.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n_revised.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n_revised.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="25398" selectionTopPixel="9033"/>
 </editor>
 </editors>
 <views>
@@ -67,14 +119,16 @@
 <viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.TypeHierarchy" partName="Hierarchy"/>
+<view id="org.eclipse.ui.console.ConsoleView:Console View #1" partName="Console">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (17 items)"/>
-<category IMemento.internal.id="Errors"/>
 <category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Errors"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="73" org.eclipse.ui.ide.markerType="959" org.eclipse.ui.ide.pathField="143" org.eclipse.ui.ide.resourceField="108" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
+<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -113,6 +167,9 @@
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
+</view>
+<view id="org.eclipse.pde.runtime.LogView" partName="Error Log">
+<viewState activate="true" allSessions="true" column2="300" column3="150" column4="1183" error="true" groupBy="0" info="true" limit="50" ok="true" orderType="2" orderValue="-1" show_filter_text="true" useLimit="true" warning="true"/>
 </view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
@@ -174,8 +231,10 @@
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
-<view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.ui.console.ConsoleView:Console View #6"/>
+<view id="org.eclipse.ui.console.ConsoleView:Console View #1"/>
+<view id="org.eclipse.pde.runtime.LogView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
 <layout>
@@ -200,18 +259,19 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="252" ratioRight="756" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.6433333" ratioLeft="579" ratioRight="321" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView:Console View #6" appearance="2" expanded="2">
+<info part="org.eclipse.ui.editorss" ratio="0.13200629" ratioLeft="252" ratioRight="1657" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.625" ratioLeft="595" ratioRight="357" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.console.ConsoleView:Console View #6" label="Console"/>
+<page content="org.eclipse.ui.console.ConsoleView:Console View #1" label="Console"/>
+<page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
-<page content="org.eclipse.ui.console.ConsoleView:Console View #1" label="LabelNotFound"/>
 <page content="org.eclipse.ui.console.ConsoleView:Console View #2" label="LabelNotFound"/>
 <page content="org.eclipse.ui.console.ConsoleView:Console View #3" label="LabelNotFound"/>
 <page content="org.eclipse.ui.console.ConsoleView:Console View #5" label="LabelNotFound"/>
@@ -221,6 +281,8 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="5"/>
+<part id="6"/>
 </presentation>
 </folder>
 </info>
@@ -244,165 +306,159 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/Final_Stats.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/Relations.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/Relations_5.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/Final_Stats5.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/SimpleJoin.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/Normal_Skyline.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Skyline/src/Aggregated_Skyline.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2_n_revised.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/getPOI.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n_revised.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/cloudmade-java-api/src/java/com/cloudmade/api/CMClient.java"/>
 </editors>
-<item historyLabel="Final_Stats.java" index="0">
-<position info="not_deleted" x="321" y="0"/>
+<item historyLabel="getPOI.java" index="0">
+<position info="not_deleted" x="3619" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="793" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="29660" y="0"/>
 </item>
-<item historyLabel="SimpleJoin.java" index="4">
-<position info="not_deleted" x="5736" y="0"/>
+<item historyLabel="getPOI.java" index="0">
+<position info="not_deleted" x="3619" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="793" y="0"/>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="14648" y="19"/>
 </item>
-<item historyLabel="Relations_5.java" index="2">
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15245" y="0"/>
+</item>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24228" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15245" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15137" y="0"/>
+</item>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24051" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15678" y="0"/>
+</item>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24051" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15678" y="0"/>
+</item>
+<item historyLabel="getPOI.java" index="0">
+<position info="not_deleted" x="3619" y="0"/>
+</item>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24051" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15678" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
 <position/>
 </item>
-<item historyLabel="Relations.java" index="1">
-<position info="not_deleted" x="6556" y="204"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24193" y="0"/>
 </item>
-<item historyLabel="Relations_5.java" index="2">
+<item historyLabel="getPOI.java" index="0">
+<position info="not_deleted" x="3619" y="0"/>
+</item>
+<item historyLabel="CMClient.java" index="2">
 <position/>
 </item>
-<item historyLabel="Normal_Skyline.java" index="5">
-<position info="not_deleted" x="165" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24023" y="0"/>
 </item>
-<item historyLabel="Aggregated_Skyline.java" index="6">
-<position info="not_deleted" x="167" y="0"/>
-</item>
-<item historyLabel="Normal_Skyline.java" index="5">
-<position info="not_deleted" x="164" y="0"/>
-</item>
-<item historyLabel="Relations_5.java" index="2">
+<item historyLabel="CMClient.java" index="2">
 <position/>
 </item>
-<item historyLabel="Normal_Skyline.java" index="5">
-<position info="not_deleted" x="98" y="69"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="23888" y="0"/>
 </item>
-<item historyLabel="Relations_5.java" index="2">
-<position info="not_deleted" x="545" y="0"/>
+<item historyLabel="getPOI.java" index="0">
+<position info="not_deleted" x="3619" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="136" y="0"/>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="14923" y="0"/>
 </item>
-<item historyLabel="Relations_5.java" index="2">
-<position info="not_deleted" x="545" y="0"/>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="14989" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="136" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24168" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="187" y="0"/>
+<item historyLabel="getPOI.java" index="0">
+<position info="not_deleted" x="3619" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="1603" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24168" y="0"/>
 </item>
-<item historyLabel="Examplem_n.java" index="7">
-<position info="not_deleted" x="1764" y="0"/>
+<item historyLabel="CMClient.java" index="2">
+<position info="not_deleted" x="15217" y="0"/>
 </item>
-<item historyLabel="Aggregated_Skyline.java" index="6">
-<position info="not_deleted" x="167" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24168" y="0"/>
 </item>
-<item historyLabel="Examplem_n.java" index="7">
-<position info="not_deleted" x="1764" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24352" y="0"/>
 </item>
-<item historyLabel="Aggregated_Skyline.java" index="6">
-<position info="not_deleted" x="167" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24386" y="0"/>
 </item>
-<item historyLabel="Normal_Skyline.java" index="5">
-<position info="not_deleted" x="98" y="69"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24386" y="0"/>
 </item>
-<item historyLabel="Relations_5.java" index="2">
-<position info="not_deleted" x="545" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24381" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="1603" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24680" y="0"/>
 </item>
-<item historyLabel="Examplem_n.java" index="7">
-<position info="not_deleted" x="1764" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24719" y="0"/>
 </item>
-<item historyLabel="Aggregated_Skyline.java" index="6">
-<position info="not_deleted" x="167" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24760" y="0"/>
 </item>
-<item historyLabel="Normal_Skyline.java" index="5">
-<position info="not_deleted" x="98" y="69"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24470" y="0"/>
 </item>
-<item historyLabel="Relations_5.java" index="2">
-<position info="not_deleted" x="545" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24799" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="1603" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24843" y="0"/>
 </item>
-<item historyLabel="Examplem_n.java" index="7">
-<position info="not_deleted" x="25165" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24842" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24935" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24469" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24759" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24635" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="24932" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="13237" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="27515" y="0"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="34487" y="6"/>
 </item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="13161" y="0"/>
+<item historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="27568" y="0"/>
 </item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="2614" y="0"/>
-</item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="14023" y="0"/>
-</item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="2614" y="0"/>
-</item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="14023" y="0"/>
-</item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="14468" y="0"/>
-</item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="611" y="0"/>
-</item>
-<item historyLabel="Final_Stats5.java" index="3">
-<position info="not_deleted" x="2555" y="0"/>
-</item>
-<item historyLabel="Aggregated_Skyline.java" index="6">
-<position info="not_deleted" x="167" y="0"/>
-</item>
-<item historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="9089" y="0"/>
-</item>
-<item historyLabel="Relations_5.java" index="2">
-<position info="not_deleted" x="994" y="0"/>
-</item>
-<item active="true" historyLabel="Example2_n_revised.java" index="8">
-<position info="not_deleted" x="828" y="0"/>
+<item active="true" historyLabel="Examplem_n_revised.java" index="1">
+<position info="not_deleted" x="27662" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -421,50 +477,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Example2_n_revised.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2_n_revised.java">
-<persistable path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2_n_revised.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Examplem_n_revised.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n_revised.java">
+<persistable path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Examplem_n_revised.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Final_Stats5.java" tooltip="Skyline/src/Final_Stats5.java">
-<persistable path="/Skyline/src/Final_Stats5.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="getPOI.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/getPOI.java">
+<persistable path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/getPOI.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SimpleJoin.java" tooltip="Skyline/src/SimpleJoin.java">
-<persistable path="/Skyline/src/SimpleJoin.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Example2.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2.java">
+<persistable path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/Example2.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Final_Stats.java" tooltip="Skyline/src/Code_woFileIO/Final_Stats.java">
-<persistable path="/Skyline/src/Code_woFileIO/Final_Stats.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CMClient.java" tooltip="cloudmade-java-api/src/java/com/cloudmade/api/CMClient.java">
+<persistable path="/cloudmade-java-api/src/java/com/cloudmade/api/CMClient.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Normal_Skyline.java" tooltip="Skyline/src/Code_woFileIO/Normal_Skyline.java">
-<persistable path="/Skyline/src/Code_woFileIO/Normal_Skyline.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GetRoute.java" tooltip="cloudmade-java-api/src/java_examples/com/cloudmade/examples/GetRoute.java">
+<persistable path="/cloudmade-java-api/src/java_examples/com/cloudmade/examples/GetRoute.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFS_LocalSkyline.java" tooltip="Skyline/src/Code_woFileIO/SFS_LocalSkyline.java">
-<persistable path="/Skyline/src/Code_woFileIO/SFS_LocalSkyline.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexStructure_default.java" tooltip="Vertex_Cover/src/IndexStructure_default.java">
+<persistable path="/Vertex_Cover/src/IndexStructure_default.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFS_FullSkyline.java" tooltip="Skyline/src/Code_woFileIO/SFS_FullSkyline.java">
-<persistable path="/Skyline/src/Code_woFileIO/SFS_FullSkyline.java"/>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Graphs.class" tooltip="org.jgrapht.Graphs">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Vertex_Cover/\/users\/mti\/arzoo\/workspace\/jgrapht\/jgrapht-core\/src\/main\/java\/org.jar&lt;org.jgrapht(Graphs.class"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Aggregated_Skyline.java" tooltip="Skyline/src/Code_woFileIO/Aggregated_Skyline.java">
-<persistable path="/Skyline/src/Code_woFileIO/Aggregated_Skyline.java"/>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="NeighborIndex.class" tooltip="org.jgrapht.alg.NeighborIndex">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Vertex_Cover/\/users\/mti\/arzoo\/workspace\/jgrapht\/jgrapht-core\/src\/main\/java\/org.jar&lt;org.jgrapht.alg(NeighborIndex.class"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tuple.java" tooltip="Skyline/src/Code_woFileIO/Tuple.java">
-<persistable path="/Skyline/src/Code_woFileIO/Tuple.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IndexStructure.java" tooltip="Vertex_Cover/src/IndexStructure.java">
+<persistable path="/Vertex_Cover/src/IndexStructure.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tuple_ArrayList.java" tooltip="Skyline/src/Code_woFileIO/Tuple_ArrayList.java">
-<persistable path="/Skyline/src/Code_woFileIO/Tuple_ArrayList.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DistanceGraph.java" tooltip="Vertex_Cover/src/DistanceGraph.java">
+<persistable path="/Vertex_Cover/src/DistanceGraph.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ThresholdAlgorithm.java" tooltip="Skyline/src/Code_woFileIO/ThresholdAlgorithm.java">
-<persistable path="/Skyline/src/Code_woFileIO/ThresholdAlgorithm.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="roadNet-CA.txt" tooltip="Vertex_Cover/roadNet-CA.txt">
+<persistable path="/Vertex_Cover/roadNet-CA.txt"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SimpleJoin.java" tooltip="Skyline/src/Code_woFileIO/SimpleJoin.java">
-<persistable path="/Skyline/src/Code_woFileIO/SimpleJoin.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="edges.txt" tooltip="Vertex_Cover/edges.txt">
+<persistable path="/Vertex_Cover/edges.txt"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SFS_Algorithm.java" tooltip="Skyline/src/Code_woFileIO/SFS_Algorithm.java">
-<persistable path="/Skyline/src/Code_woFileIO/SFS_Algorithm.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="edges.txt" tooltip="Vertex_Cover/src/edges.txt">
+<persistable path="/Vertex_Cover/src/edges.txt"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Relations.java" tooltip="Skyline/src/Code_woFileIO/Relations.java">
-<persistable path="/Skyline/src/Code_woFileIO/Relations.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Streaming_VertexCover.java" tooltip="Vertex_Cover/src/Streaming_VertexCover.java">
+<persistable path="/Vertex_Cover/src/Streaming_VertexCover.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Relations_5.java" tooltip="Skyline/src/Code_woFileIO/Relations_5.java">
-<persistable path="/Skyline/src/Code_woFileIO/Relations_5.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyGraph.java" tooltip="Vertex_Cover/src/MyGraph.java">
+<persistable path="/Vertex_Cover/src/MyGraph.java"/>
 </file>
 </mruList>
 </workbench>

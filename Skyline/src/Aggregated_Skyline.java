@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.Hashtable;
 
 class Aggregated_Skyline {
-	static String folder = "Sample10_revised10/";
+	static String folder = "Temp10/";
 	static int number = 10;
 	public static void printPath_list(ArrayList<ArrayList<Integer>> path_list) {
 		System.out.println("Printing path list.....");
@@ -83,21 +84,39 @@ class Aggregated_Skyline {
 	    String join_file2;
 	    ArrayList<Tuple> full_1;
 	    ArrayList<Tuple> full_2;
+	    
 	    if (i == join_order.size()-1) {
 		/*At the end there is a join_file1, we have to end it with the destination side relation */
-		join_file2 = SimpleJoin.computeSimpleJoin(folder+"relationchng_d"+number+".txt", folder+"relation_node_"+number+".txt", 4);
+	    //here we need to compute only the paths of the next type
+	    	
+	    //
+	    	join_file2 = SimpleJoin.computeSimpleJoin(folder+"relationchng_d"+number+".txt", folder+"relation_node_"+number+".txt", 4);
 		//System.out.println(" compute full skyline true "+join_file1);
 		//System.out.println(" compute full skyline false "+join_file2);	
-	    full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
-	    full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, true);
+	    	full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
+	    	    
+	    	full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, true);
 	    }
 	    else {
+	    	int end_order = (Integer)join_order.get(i+1);
+	    	
+	    	String related_file = SimpleJoin.computeWithend(file_name, end_order, folder+"type"+join_order.get(i+1)+"_"+number+".txt");
 	    //System.out.println("Last stage "+file_name);
-		join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+//	    	System.out.println(end_order+"  order "+related_file);
+	    	join_file2 = SimpleJoin.computeSimpleJoin(related_file, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+			//System.out.println(join_list2.size()+"  list2");
+	    	
+	    	//join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
 		//System.out.println(" compute full skyline true "+join_file1);
-		//System.out.println(" compute full skyline false "+join_file2);	
-		full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
-		full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, false);
+		//System.out.println(" compute full skyline false "+join_file2);
+	    	/*count the number of lines in the join file1*/
+	    	
+	    	
+	    	full_1 = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
+	    	//System.out.println("After Skyline computation "+full_1.size());
+	    	full_2 = SFS_FullSkyline.computeFullSkyline(join_file2, false, false);
+			//System.out.println(full_2.size()+"  skyline  "+full_1.size());
+
 	    }
 	    
 	    /*Remove non skyline path from the path_list as well!! */
@@ -138,6 +157,8 @@ class Aggregated_Skyline {
 	    /* for the currrent setup all the edges will finally be in the local skyline set! */
 	    Tuple_ArrayList local_tuple_1 = SFS_LocalSkyline.computeLocalSkyline(full_1, true);
 	    Tuple_ArrayList local_tuple_2 = SFS_LocalSkyline.computeLocalSkyline(full_2, false);
+	    //System.out.println("local--------"+local_tuple_1.skyline.size()+" "+local_tuple_1.non_skyline.size()+" "+local_tuple_2.skyline.size()+" "+local_tuple_2.non_skyline.size());
+	    
 	    
 	    ArrayList<Tuple> AB = SimpleJoin.computeSimpleJoin(local_tuple_1.skyline , local_tuple_2.skyline, path_list, free_index);
 	    //System.out.println("AB--------"+AB.size());
@@ -161,13 +182,16 @@ class Aggregated_Skyline {
 	    AB.addAll(dashAB);
 	    AB.addAll(AdashB);
 	    
-	    for (int k=0; k<dashAdashB.size(); k++) {
+	    /*for (int k=0; k<dashAdashB.size(); k++) {
 		if (SFS_Algorithm.is_skyline((Tuple)dashAdashB.get(k), AB, true)) {
 		    AB.add((Tuple)dashAdashB.get(k));
 		}
-	    }
+	    }*/
+	    AB.addAll(SFS_FullSkyline.computeFullSkyline(dashAdashB, true, false));
+	        
+	    
 	    return_sizes.add(AB.size());
-	    //System.out.print(AB.size()+"  ");
+	    //System.out.println(AB.size()+" final ");
 	    //Write this into a file
 	    /* Can improve efficiency by not writing the answers everytime to the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 	    
@@ -193,7 +217,7 @@ class Aggregated_Skyline {
 	//join_file1
     FileWriter fstream = new FileWriter(folder+"result_paths"+number+".txt");
     BufferedWriter out = new BufferedWriter(fstream);	
-    ArrayList<Tuple> finalpaths = SFS_FullSkyline.computeFullSkyline(join_file1, true, false);
+    ArrayList<Tuple> finalpaths = SFS_FullSkyline.computeFullSkyline_final(join_file1, true, false);
     
     
 	for (int k=0; k<finalpaths.size(); k++) {
@@ -219,12 +243,102 @@ class Aggregated_Skyline {
     }
     
     public static void main(String args[]) throws IOException {
-    	Relations s = new Relations();
+    /*	Relations s = new Relations();
     	s.find_Relations();
     	
     	for (int i=0; i<10; i++){
-    		s.update_sd();
+    		s.update_sd();*/
     		find_aggregatedskyline();
+    	//}
+    		
+    	FileWriter fstream_1  = new FileWriter(folder+"/result_lat_long"+number+".txt");
+    	BufferedWriter out_1 = new BufferedWriter(fstream_1);
+	
+    		
+    	//Here we know that the resultant paths are in the 	(folder+"result_paths"+number+".txt") file.
+    		
+    	Hashtable table_ll = new Hashtable();
+    	FileInputStream stream = new FileInputStream(folder+"lat_long"+number+".txt");
+    	DataInputStream in = new DataInputStream(stream);
+    	BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    	
+    	String s;
+    	while((s=br.readLine())!=null) {
+    		String []line = s.split("\t");
+    		table_ll.put(Integer.parseInt(line[0]), line[1]);
     	}
+    	
+
+    	FileInputStream stream1 = new FileInputStream(folder+"lat_long_s"+number+".txt");
+    	DataInputStream in1 = new DataInputStream(stream1);
+    	BufferedReader br1 = new BufferedReader(new InputStreamReader(in1));
+    	
+    	String s1 = br1.readLine();
+    	String start_result = "";
+    	if (s1!=null) {
+    		start_result = start_result+s1;
+    	}
+    	else {
+    		//ID
+    		//change this to get the latitude and longitude for the id case!
+    	}
+
+    	
+    	FileInputStream stream3 = new FileInputStream(folder+"lat_long_d"+number+".txt");
+    	DataInputStream in3 = new DataInputStream(stream3);
+    	BufferedReader br3 = new BufferedReader(new InputStreamReader(in3));
+    	
+    	String s2 = br3.readLine();
+    	String end_result = "";
+    	if (s2!=null) {
+    		end_result = end_result+s2;
+    	}
+    	else {
+    		//ID
+    		//change this to get the latitude and longitude for the id case!
+    	}
+
+    	
+
+    	FileInputStream stream2 = new FileInputStream(folder+"result_paths"+number+".txt");
+    	DataInputStream in2 = new DataInputStream(stream2);
+    	BufferedReader br2 = new BufferedReader(new InputStreamReader(in2));
+
+    	String line;
+    	String result = start_result;
+    	
+		out_1.write(start_result);
+		out_1.write("\n");
+		out_1.write(end_result);
+		out_1.write("\n");
+
+    	
+    	while((line=br2.readLine())!=null) {
+    		String split_line[] = line.split("\t");
+    		out_1.write("NEW");
+    		out_1.write("\n");
+    		out_1.write(start_result);
+    		out_1.write("\n");
+    		for (int i=0; i<split_line.length-1; i++) {
+    			int path_id = Integer.parseInt(split_line[i]);
+    			if(table_ll.get(path_id)!=null){
+    				//result =result +"|"+table_ll.get(path_id);
+    	    		out_1.write((String)table_ll.get(path_id));
+        			out_1.write("\n");    		
+    			}
+    		}
+    		//result = result + "|" + end_result;
+    				out_1.write(end_result);
+    				out_1.write("\n");
+    		//System.out.println("http://staticmaps.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/staticmap?size=1024x600&path=color:0x0000ff|weight:8|"+result+"&marker=size:big|label:Y|"
+    		//		+start_result+"&marker=size:big|label:Z|"+end_result);
+    		//result = start_result;
+    	}
+    	    	
+    	br.close();
+    	br1.close();
+    	br2.close();
+    	br3.close();
+    	out_1.close();
     }
 }

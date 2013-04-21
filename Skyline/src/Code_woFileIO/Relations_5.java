@@ -15,7 +15,7 @@ class Relations_5 {
      Hashtable node_table = new Hashtable();
      ArrayList node_list = new ArrayList(); 
      int g_counter = 0;
-	static String folder = "Sample10_revised10/";
+	static String folder = "Sample10statswoIO_10/";
 	static int number = 10;
     int counter1 = 0;                               
     int [][]map_array = new int[number*5][number*5];

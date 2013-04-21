@@ -13,8 +13,8 @@ class Relations {
     Hashtable node_table = new Hashtable();
     ArrayList node_list = new ArrayList();
     int g_counter = 0;
-	static String folder = "SamplestatswoIO_10/";
-	static int number = 10;
+	static String folder = "SamplestatswoIO_30/";
+	static int number = 30;
     int counter1 = 0;
     int [][]map_array = new int[number*3][number*3];
 

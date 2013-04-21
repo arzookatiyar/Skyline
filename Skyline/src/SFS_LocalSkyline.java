@@ -16,14 +16,17 @@ class SFS_LocalSkyline {
 	ArrayList<Tuple> skyline = new ArrayList<Tuple>();
 	ArrayList<Tuple> non_skyline = new ArrayList<Tuple>();
 	if (it1.hasNext())
-		skyline.add((Tuple)it1.next());
+		//skyline.add((Tuple)it1.next());
+		non_skyline.add((Tuple)it1.next());
 	while (it1.hasNext()) {
 	    Tuple test = (Tuple)it1.next();
 	    if(SFS_Algorithm.is_skyline(test, skyline, false)) {
-		skyline.add(test);
+		//skyline.add(test);
+	    	non_skyline.add(test);
 	    }
 	    else
-		non_skyline.add(test);
+		//non_skyline.add(test);
+	    	skyline.add(test);
 	}		
 	
 	Tuple_ArrayList local_list = new Tuple_ArrayList(skyline, non_skyline);

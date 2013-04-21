@@ -21,8 +21,8 @@ import java.util.Hashtable;
 
 public class Example2_n_revised {
 	static Hashtable prob_table = new Hashtable();
-	static int nodes = 30;
-	static String folder = "Sample_revised";
+	static int nodes = 10;
+	static String folder = "Sampletest_revised";
 	
 	
 	public static int among_POI(int []array_id, int []check_id) {
@@ -477,7 +477,7 @@ public class Example2_n_revised {
 	    out.close();
 	    	    
 	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	    System.out.println("1. ID       2.Query");
+	    System.out.println("1. ID       2.Query 	3.Latitude, Longitude");
 	    int choice = Integer.parseInt(br.readLine());
 	    int source_id = -1;
 	    int dest_id = -1;
@@ -487,7 +487,19 @@ public class Example2_n_revised {
 	    GeoResult result_d = null;
 	    Route route_s = null;
 	    Route route_d = null;
-	    if (choice == 2) {
+	    Point point_s = null;
+	    Point point_d = null;
+	    
+	    if (choice == 3) {
+	    	float lat_s = Float.parseFloat(br.readLine());
+	    	float long_s = Float.parseFloat(br.readLine());
+	    	float lat_d = Float.parseFloat(br.readLine());
+	    	float long_d = Float.parseFloat(br.readLine());
+	    	point_s = new Point(lat_s, long_s);
+	    	point_d = new Point(lat_d, long_d);
+	    	
+	    }
+	    else if (choice == 2) {
 	    	String query_s = br.readLine();
 	    	String query_d = br.readLine();
 	    
@@ -545,15 +557,16 @@ public class Example2_n_revised {
 	    	/* Assume that it is the case only when the user enters the query. With only id we do not determine the 
 	    	 * Georesults and calculate the new distances
 	    	 */
-	    	
 	    	int []array_dist = new int[results11.found+results12.found+results13.found];
 	    	int []array_id = new int[results11.found+results12.found+results13.found];
 	    	int counter = -1;
 	    	System.out.println("initialised");
 
-	    	
+	    
 	    	for (int j=0; j<(results11.found+results12.found+results13.found); j++) {
-		    	if (j < results11.found && source_type==1) {
+	    		
+	    		if (choice == 2) {
+		    	if (j < results11.found) {
 		    		//System.out.println(i+"  "+j);
 	    			route_s = client.route ((Point)((result_s).centroid),
 	    					(Point)((results11.results[j]).centroid),
@@ -564,7 +577,7 @@ public class Example2_n_revised {
 		                    MeasureUnit.KM
 		                );
 
-		    	} else if (j >= results11.found && j<(results11.found + results12.found) && source_type==2) {
+		    	} else if (j >= results11.found && j<(results11.found + results12.found)) {
 		    		//System.out.println(i+"  "+j);
 	    			route_s = client.route ((Point)((result_s).centroid),
 	    					(Point)((results12.results[j-(results11.found)]).centroid),
@@ -575,7 +588,7 @@ public class Example2_n_revised {
 		                    MeasureUnit.KM
 		                );
 		    	}
-		    	else if (j >= (results11.found + results12.found) && source_type==3) {
+		    	else if (j >= (results11.found + results12.found)) {
 		    		//System.out.println(i+"  "+j);
 	    			route_s = client.route ((Point)((result_s).centroid),
 	    					(Point)((results13.results[j-(results11.found + results12.found)]).centroid),
@@ -589,6 +602,50 @@ public class Example2_n_revised {
 		    	else {
 		    		continue;
 		    	}
+	    	}
+	  
+	    	else if(choice == 3) {
+	    		
+	    		if (j < results11.found) {
+			    		//System.out.println(i+"  "+j);
+		    			route_s = client.route (point_s,
+		    					(Point)((results11.results[j]).centroid),
+			                    RouteType.CAR,
+			                    null,
+			                    null,
+			                    "en",
+			                    MeasureUnit.KM
+			                );
+
+			    	} else if (j >= results11.found && j<(results11.found + results12.found)) {
+			    		//System.out.println(i+"  "+j);
+		    			route_s = client.route (point_s,
+		    					(Point)((results12.results[j-(results11.found)]).centroid),
+			                    RouteType.CAR,
+			                    null,
+			                    null,
+			                    "en",
+			                    MeasureUnit.KM
+			                );
+			    	}
+			    	else if (j >= (results11.found + results12.found)) {
+			    		//System.out.println(i+"  "+j);
+		    			route_s = client.route (point_s,
+		    					(Point)((results13.results[j-(results11.found + results12.found)]).centroid),
+			                    RouteType.CAR,
+			                    null,
+			                    null,
+			                    "en",
+			                    MeasureUnit.KM
+			                );
+			    	}
+			    	else {
+			    		continue;
+			    	}
+		    	}
+
+	    		
+	    		
 		    			    			    			    	
     			GeoResults results1 = client.present_along_route("cafe", route_s.geometry.points, 20, 30);
     			GeoResults results2 = client.present_along_route("pub", route_s.geometry.points, 20, 30);
@@ -618,16 +675,16 @@ public class Example2_n_revised {
     			int common_ids3 = among_POI(result_id, found_id3);
     			
     			if (j < results11.found) {
-        			if (common_ids1<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+        			if (common_ids1<=1) { //Ignore only when the cafe belongs to the list of the cafes!
         				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
         				++counter;
         				System.out.println("counter now increased "+counter);
         				array_dist[counter] = (int)route_s.summary.totalDistance;
         				array_id[counter] = (results11.results[j]).id;
     			}
-        		
+    			}
         			if (j >= results11.found && j<(results11.found + results12.found)) {
-            			if (common_ids2<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+            			if (common_ids2<=1) { //Ignore only when the cafe belongs to the list of the cafes!
             				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
             				++counter;
             				System.out.println("counter now increased "+counter);
@@ -637,7 +694,7 @@ public class Example2_n_revised {
             			}
         			}
     			    if (j >= (results11.found + results12.found)) {
-            			if (common_ids3<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+            			if (common_ids3<=1) { //Ignore only when the cafe belongs to the list of the cafes!
             				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
             				++counter;
             				System.out.println("counter now increased "+counter);
@@ -673,7 +730,7 @@ public class Example2_n_revised {
 
     				//counter=counter+1;    				
     			}*/
-    			
+	    		
     	    	sort(array_dist, array_id, counter);
     	    	
 
@@ -696,7 +753,7 @@ public class Example2_n_revised {
     	    		out_s.write("\n");
     	    	}
     			
-	    	}
+	    	
 	    		    	
 	    }//if statement ends here
 	    else {
@@ -722,7 +779,10 @@ public class Example2_n_revised {
 
 	    	
 	    	for (int j=0; j<(results11.found+results12.found+results13.found); j++) {
-		    	if (j < results11.found && dest_type == 1) {
+	    		
+	    		
+	    		if(choice == 2) {
+		    	if (j < results11.found) {
 		    		//System.out.println(i+"  "+j);
 	    			route_d = client.route ((Point)((result_d).centroid),
 	    					(Point)((results11.results[j]).centroid),
@@ -734,7 +794,7 @@ public class Example2_n_revised {
 		                );
 
 		    	}
-		    	else if (j >= results11.found && j<(results11.found + results12.found) && dest_type == 2) {
+		    	else if (j >= results11.found && j<(results11.found + results12.found)) {
 		    		//System.out.println(i+"  "+j);
 	    			route_d = client.route ((Point)((result_d).centroid),
 	    					(Point)((results12.results[j-(results11.found)]).centroid),
@@ -745,7 +805,7 @@ public class Example2_n_revised {
 		                    MeasureUnit.KM
 		                );
 		    	}
-		    	else if (j >= (results11.found + results12.found) && dest_type == 3) {
+		    	else if (j >= (results11.found + results12.found)) {
 		    		//System.out.println(i+"  "+j);
 	    			route_d = client.route ((Point)((result_d).centroid),
 	    					(Point)((results13.results[j-(results11.found + results12.found)]).centroid),
@@ -759,6 +819,48 @@ public class Example2_n_revised {
 		    	else {
 		    		continue;
 		    	}
+	    		}
+	    		
+		    	else if(choice == 3) {
+		    		
+		    		if (j < results11.found) {
+				    		//System.out.println(i+"  "+j);
+			    			route_d = client.route (point_d,
+			    					(Point)((results11.results[j]).centroid),
+				                    RouteType.CAR,
+				                    null,
+				                    null,
+				                    "en",
+				                    MeasureUnit.KM
+				                );
+
+				    	} else if (j >= results11.found && j<(results11.found + results12.found)) {
+				    		//System.out.println(i+"  "+j);
+			    			route_d = client.route (point_d,
+			    					(Point)((results12.results[j-(results11.found)]).centroid),
+				                    RouteType.CAR,
+				                    null,
+				                    null,
+				                    "en",
+				                    MeasureUnit.KM
+				                );
+				    	}
+				    	else if (j >= (results11.found + results12.found)) {
+				    		//System.out.println(i+"  "+j);
+			    			route_d = client.route (point_d,
+			    					(Point)((results13.results[j-(results11.found + results12.found)]).centroid),
+				                    RouteType.CAR,
+				                    null,
+				                    null,
+				                    "en",
+				                    MeasureUnit.KM
+				                );
+				    	}
+				    	else {
+				    		continue;
+				    	}
+			    	}
+
 		    			    			    			    	
     			GeoResults results1 = client.present_along_route("cafe", route_d.geometry.points, 20, 30);
     			GeoResults results2 = client.present_along_route("pub", route_d.geometry.points, 20, 30);
@@ -791,16 +893,16 @@ public class Example2_n_revised {
     			int common_ids3 = among_POI(result_id, found_id3);
     			
     			if (j < results11.found) {
-        			if (common_ids1<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+        			if (common_ids1<=1) { //Ignore only when the cafe belongs to the list of the cafes!
         				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
         				++counter;
         				System.out.println("counter now increased "+counter);
         				array_dist[counter] = (int)route_d.summary.totalDistance;
         				array_id[counter] = (results11.results[j]).id;
     			}
-        		
+    			}
         			if (j >= results11.found && j<(results11.found + results12.found)) {
-            			if (common_ids2<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+            			if (common_ids2<=1) { //Ignore only when the cafe belongs to the list of the cafes!
             				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
             				++counter;
             				System.out.println("counter now increased "+counter);
@@ -810,7 +912,7 @@ public class Example2_n_revised {
             			}
         			}
     			    if (j >= (results11.found + results12.found)) {
-            			if (common_ids3<=2) { //Ignore only when the cafe belongs to the list of the cafes!
+            			if (common_ids3<=1) { //Ignore only when the cafe belongs to the list of the cafes!
             				//System.out.println("Distance added "+(++counter1)+" for node "+i+" "+counter);
             				++counter;
             				System.out.println("counter now increased "+counter);
@@ -885,7 +987,7 @@ public class Example2_n_revised {
 
     				//counter=counter+1;    				
     			}
-    */			
+    */		
     	    	sort(array_dist, array_id, counter);
     	    	
 
@@ -906,7 +1008,7 @@ public class Example2_n_revised {
     	    		out_d.write("\n");	
     	    	}
     			
-	    	}
+	    	
 	    		    	
 	    }//if statement ends here
 	    else {

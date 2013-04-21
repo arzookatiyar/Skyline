@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>cloudmade-java-api</name>
+			<type>2</type>
+			<location>/users/mti/arzoo/workspace/cloudmade-java-api</location>
+		</link>
+	</linkedResources>
 </projectDescription>

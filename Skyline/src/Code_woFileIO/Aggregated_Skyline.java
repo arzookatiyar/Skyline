@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 class Aggregated_Skyline {
-	static String folder = "SamplestatswoIO_10/";;
+	static String folder = "Sample10statswoIO_10/";;
 	static int number = 10;
 	public static void printPath_list(ArrayList<ArrayList<Integer>> path_list) {
 		System.out.println("Printing path list.....");
@@ -100,11 +100,26 @@ class Aggregated_Skyline {
 	    else {
 	    //System.out.println("Last stage "+file_name);
 		//join_file2 = SimpleJoin.computeSimpleJoin(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
-		join_list2 = SimpleJoin.computeSimpleJoinlist(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+	    int end_order = (Integer)join_order.get(i+1);
+	    ArrayList list1 = SimpleJoin.computeWithendlist(file_name, end_order, folder+"type"+join_order.get(i+1)+"_"+number+".txt");
+			//System.out.println("Current order "+end_order+"  "+list1.size()+"  "+file_name);
+//			for (int i1=0; i1<list1.size(); i1++)
+//				System.out.println(((Tuple)list1.get(i1)).node_id2);
+
+	   // System.out.println(list1.size()+"  list1");
+	  //  computeWithendlist(String file, int end_order, String file2);	
+		join_list2 = SimpleJoin.computeSimpleJoinlist(list1, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+	//    	join_list2 = SimpleJoin.computeSimpleJoinlist(file_name, folder+"relation_node_"+number+".txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt" 	
+		//System.out.println(join_list2.size()+"  list2");
+		//for (int i1=0; i1<join_list2.size(); i1++)
+		//	System.out.println(((Tuple)join_list2.get(i1)).node_id1+"  "+((Tuple)join_list2.get(i1)).node_id2+"  "+((Tuple)join_list2.get(i1)).distance+"  "+((Tuple)join_list2.get(i1)).probability);
+
+		
 		//System.out.println(" compute full skyline true "+join_file1);
 		//System.out.println(" compute full skyline false "+join_file2);	
 		full_1 = SFS_FullSkyline.computeFullSkyline(join_list1, true, false);
 		full_2 = SFS_FullSkyline.computeFullSkyline(join_list2, false, false);
+		//System.out.println(full_2.size()+"  skyline  "+full_1.size());
 	    }
 	    
 	    /*Remove non skyline path from the path_list as well!! */
@@ -168,11 +183,15 @@ class Aggregated_Skyline {
 	    AB.addAll(dashAB);
 	    AB.addAll(AdashB);
 	    
-	    for (int k=0; k<dashAdashB.size(); k++) {
+	 /*   for (int k=0; k<dashAdashB.size(); k++) {
 		if (SFS_Algorithm.is_skyline((Tuple)dashAdashB.get(k), AB, true)) {
 		    AB.add((Tuple)dashAdashB.get(k));
 		}
-	    }
+	    }*/
+	    
+	    AB.addAll(SFS_FullSkyline.computeFullSkyline(dashAdashB, true, false));
+
+	    
 	    return_sizes.add(AB.size());
 	    
 	    join_list1.clear();
@@ -202,7 +221,9 @@ class Aggregated_Skyline {
 	//join_file1
   //  FileWriter fstream = new FileWriter(folder+"result_paths"+number+".txt");
   //  BufferedWriter out = new BufferedWriter(fstream);	
-    ArrayList<Tuple> finalpaths = SFS_FullSkyline.computeFullSkyline(join_list1, true, false);
+ //   ArrayList<Tuple> finalpaths = SFS_FullSkyline.computeFullSkyline(join_list1, true, false);
+    ArrayList<Tuple> finalpaths = SFS_FullSkyline.computeFullSkyline_final(join_list1, true, false);
+
     
     
 	/*for (int k=0; k<finalpaths.size(); k++) {

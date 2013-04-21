@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
+import com.cloudmade.examples.*;
 
 class Final_Stats {
-	static String folder = "Sample_revised30/";
-	static int number = 30;
+	static String folder = "Temp10/";
+	static int number = 10;
     static ArrayList nodes_list = new ArrayList();
 
 
@@ -12,7 +13,6 @@ class Final_Stats {
 	    FileWriter fw11 = new FileWriter(folder+"stats_"+number+".txt");
 	    BufferedWriter bw11 = new BufferedWriter(fw11);
 
-		
 		FileInputStream stream = new FileInputStream(folder+"relation_node_"+number+".txt");
 		DataInputStream in = new DataInputStream(stream);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -28,20 +28,25 @@ class Final_Stats {
 	    
 		
 		for (int i=0; i<nodes_list.size(); i++) {
-		//for (int i=10; i<11; i++) {
-		    FileWriter fw = new FileWriter(folder+"relation_s"+number+".txt");
+		//for (int i=0; i<1; i++) {
+		    /*FileWriter fw = new FileWriter(folder+"relation_s"+number+".txt");
 		    BufferedWriter bw2 = new BufferedWriter(fw);
 		    bw2.write(String.valueOf(nodes_list.get(i)));
-		    bw2.close();
+		    bw2.close();*/
 		    
 		for (int j=0; j<nodes_list.size(); j++) {
-		//    for (int j=11; j<12; j++) {
+		//    for (int j=13; j<14; j++) {
 				System.out.println(i+"   "+j);
 				if (i!=j) {
 				    FileWriter fw1 = new FileWriter(folder+"relation_d"+number+".txt");
 				    BufferedWriter bw1 = new BufferedWriter(fw1);
 				    bw1.write(String.valueOf(nodes_list.get(j)));
 				    bw1.close();
+				    
+				    GenerateRelations tt  = new GenerateRelations();
+					tt.generate((Integer)nodes_list.get(i) , (Integer)nodes_list.get(j));
+
+				    
 				    s.update_sd();
 				    long start_time1 = System.nanoTime(); 
 				    ArrayList number_results1 = Aggregated_Skyline.find_aggregatedskyline();				    
@@ -60,7 +65,7 @@ class Final_Stats {
 				    }
 				   // bw11.write(String.valueOf(number_results1)); //Change this!!
 				    bw11.write("\t");
-				    bw11.write(String.valueOf(end_time1-start_time1));
+				    bw11.write(String.valueOf((end_time1-start_time1)/1000));
 				    bw11.write("\t");
 				    for (int k=0; k<number_results2.size(); k++) {
 				    	bw11.write(String.valueOf(number_results2.get(k)));
@@ -68,7 +73,7 @@ class Final_Stats {
 				    }
 
 				    bw11.write("\t");
-				    bw11.write(String.valueOf(end_time2-start_time2));
+				    bw11.write(String.valueOf((end_time2-start_time2)/1000));
 				    bw11.write("\n");				    
 				}
 			}						

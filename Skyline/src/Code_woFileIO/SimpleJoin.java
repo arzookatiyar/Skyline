@@ -293,6 +293,133 @@ class SimpleJoin {
     }
     
     
+    public static ArrayList<Tuple> computeSimpleJoinlist(ArrayList<Tuple> list1, String filename2, int join_type) throws IOException{
+    	//System.out.println(filename1+" Simple Join "+filename2);
+    	ArrayList final_join = new ArrayList();
+//	FileInputStream stream1 = new FileInputStream(filename1);
+//	DataInputStream in1 = new DataInputStream(stream1);
+//	BufferedReader br1 = new BufferedReader(new InputStreamReader(in1));
+	
+	
+	//System.out.println(filename1+" Simple Join "+filename2);
+//	int index = filename1.lastIndexOf("/");
+//	String output_file = filename1.substring(0, index+1)+"join_"+filename1.substring(index+1, filename1.length());
+//	FileWriter fstream = new FileWriter(output_file);
+//	BufferedWriter out = new BufferedWriter(fstream);	
+	//System.out.println(" Output Join File "+output_file);	
+	
+	//String strLine1;
+	//while((strLine1=br1.readLine()) != null) {
+	for (int i=0; i<list1.size(); i++) {
+		//System.out.println("Enters the join "+join_type);
+	    /*Assume that the join is with nodes of the edges*/
+	    /* Possible Types 
+	       1) ---> id1, id2, distance(edge) and id1, probability(node)
+	       2) ---> id1, distance, probability, path_id (currentpath) and id1, id2, distance and probability (joined node and edge)
+	       3) ---> id1, distance, path_id and id1, probability
+	       4) ---> id1, distance and id1, probability
+	    */
+		
+		FileInputStream stream2 = new FileInputStream(filename2);
+		DataInputStream in2 = new DataInputStream(stream2);
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(in2));
+		
+	    boolean temp = false;
+	    String strLine2;
+	  //  String []string1_array = strLine1.split("\t");		
+	    if (join_type == 1) {
+		//int id_file1 = Integer.parseInt(string1_array[1]);
+	    	Tuple left = (Tuple)list1.get(i);
+	    	int id_file1 = left.node_id2;
+		while((strLine2 = br2.readLine())!=null) {
+		    //in the second file the id occurs only once and hence we can stop iterating there. Can optimise it by storing it in the ascending order??
+		    String []string2_array = strLine2.split("\t");		    
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    if (id_file1 == id_file2) {
+		    	//System.out.println(id_file1+"  "+id_file2);
+				final_join.add(new Tuple(left.node_id1, left.node_id2, left.distance, Double.parseDouble(string2_array[1])));   
+						/*left.node_id1, right.node_id1, left.distance, right.probability)));
+			out.write(string1_array[0]);
+			out.write("\t");
+			out.write(string1_array[1]);
+			out.write("\t");
+			out.write(string1_array[2]);
+			out.write("\t");
+			out.write(string2_array[1]);
+			out.write("\n");
+			break;*/
+		    }
+		}
+	    }
+	    else if (join_type == 2) {
+	    	Tuple left = (Tuple)list1.get(i);
+	    	int id_file1 = left.node_id1;
+		while ((strLine2=br2.readLine())!=null) {
+		    String []string2_array = strLine2.split("\t");
+		    //here we need to take care of the storing the path computed so far!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    if (id_file1 == id_file2) {
+		    }
+		}
+	    }
+	    else if (join_type == 3) {		
+//		int id_file1 = Integer.parseInt(string1_array[0]);
+	    	Tuple left = (Tuple)list1.get(i);
+	    	int id_file1 = left.node_id1;
+
+		while ((strLine2=br2.readLine())!=null) {
+		//	System.out.println("Reading another file ");
+		    String []string2_array = strLine2.split("\t");
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    //System.out.println(id_file1+" aaaaaaa "+id_file2);
+		    if (id_file1 == id_file2) {
+		   // System.out.println(" Enters");	
+				final_join.add(new Tuple(left.node_id1, left.node_id2, Double.parseDouble(string2_array[1]), left.distance));   
+			/*out.write(string1_array[0]);
+			out.write("\t");
+			out.write(string1_array[1]);			
+			out.write("\t");
+			out.write(string2_array[1]);
+			out.write("\t");
+			out.write(string1_array[2]);
+			out.write("\n");*/			
+		    }
+		}				
+	    }
+	    else if(join_type == 4) {
+//		int id_file1 = Integer.parseInt(string1_array[0]);
+	    	Tuple left = (Tuple)list1.get(i);
+	    	int id_file1 = left.node_id1;
+
+		while ((strLine2=br2.readLine())!=null) {
+			//System.out.println("Join complete here");
+		    String []string2_array = strLine2.split("\t");
+		    int id_file2 = Integer.parseInt(string2_array[0]);
+		    if (id_file1 == id_file2) {
+				final_join.add(new Tuple(left.node_id1, left.node_id2, Double.parseDouble(string2_array[1])));   
+			/*out.write(string1_array[0]);
+			out.write("\t");
+			out.write(string1_array[1]);			
+			out.write("\t");
+			out.write(string2_array[1]);
+			//	out.write("\t"); there is no path_id
+			//	out.write(string1_array[2]);
+			out.write("\n");*/			
+		    }
+		}									
+	    }
+	    br2.close(); //Closing file
+	    
+	}
+	
+	//br1.close();
+
+	//out.close();
+	return final_join;
+    }
+
+    
+    
     public static String computeSimpleJoin(String filename1, String filename2, int join_type) throws IOException{
     	//System.out.println(filename1+" Simple Join "+filename2);	
 	FileInputStream stream1 = new FileInputStream(filename1);
@@ -411,6 +538,54 @@ class SimpleJoin {
 	out.close();
 	return output_file;
     }
+    
+    
+	public static ArrayList<Tuple> computeWithendlist(String file, int end_order, String file2) throws IOException{
+		FileInputStream stream1 = new FileInputStream(file);
+		DataInputStream in1 = new DataInputStream(stream1);
+		BufferedReader br1 = new BufferedReader(new InputStreamReader(in1));
+		String strLine;
+		//System.out.println(file+"  "+end_order+"  "+file2);
+		//int index = file.lastIndexOf("/");
+		//String output_file = file.substring(0, index+1)+"temp_"+file.substring(index+1, file.length());
+		
+		//FileWriter fstream = new FileWriter(output_file);
+		//BufferedWriter out = new BufferedWriter(fstream);
+		
+		ArrayList<Tuple> list1 = new ArrayList<Tuple>();
+		
+		FileInputStream stream2 = new FileInputStream(file2);
+		DataInputStream in2 = new DataInputStream(stream2);
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(in2));
+
+		ArrayList nodesoftype = new ArrayList();
+		String strLine2;
+		
+		while((strLine2=br2.readLine())!=null) {
+			nodesoftype.add(Integer.parseInt(strLine2));
+		}
+		
+	//	System.out.println("Current order "+end_order+"  "+file2);
+	//	for (int i=0; i<nodesoftype.size(); i++)
+	//		System.out.println(nodesoftype.get(i));
+		
+		while((strLine=br1.readLine())!=null) {
+			String []line = strLine.split("\t");
+			int second_id = Integer.parseInt(line[1]);
+			if (nodesoftype.contains(second_id)) {
+				Tuple t = new Tuple(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]));
+				list1.add(t);
+			}
+		}
+		br1.close();
+		br2.close();
+	//	out.close();
+		
+		return list1;
+		
+		
+	}
+
     
     public static void main(String args[]) throws IOException {
 	

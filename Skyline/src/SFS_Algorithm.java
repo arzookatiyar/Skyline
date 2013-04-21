@@ -30,6 +30,22 @@ class SFS_Algorithm {
 
 	return true;
     }
+    
+    public static boolean is_skyline_revised(Tuple test, ArrayList<Tuple>skyline) {
+    	Iterator it = skyline.iterator();
+    	boolean is_dominated = false;
+    	while (it.hasNext()) {
+    	    Tuple t = (Tuple)(it.next());
+    		if(local_dominates_revised(test, t))
+    		    return false;
+    	    }	    
+    	//if the test is dominated then we ignore it, else add it in the dominator list
+    	//skyline.add(test);
+
+    	return true;
+        }
+
+    
 
     /* Returns true of sky dominates test else returns false*/
 
@@ -44,6 +60,14 @@ class SFS_Algorithm {
 		return false;
 	}
 	return false;  //we donot have any criteria for the local dominance!!
+    }
+    
+    public static boolean local_dominates_revised(Tuple test, Tuple sky) {
+    	if (test.distance>=sky.distance && test.probability<=sky.probability) {
+    		return true;
+    	}
+    	else
+    		return false;
     }
     
 

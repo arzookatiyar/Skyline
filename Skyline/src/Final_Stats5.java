@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 class Final_Stats5 {
-	static String folder = "Sample10_revised10/";
-	static int number = 10;
+	static String folder = "Sample30_revised30/";
+	static int number = 30;
     static ArrayList nodes_list = new ArrayList();
 
 
@@ -49,10 +49,12 @@ class Final_Stats5 {
 				    long start_time1 = System.nanoTime(); 
 				    ArrayList number_results1 = Aggregated_Skyline.find_aggregatedskyline();				    
 				    long end_time1 = System.nanoTime();
+				    //System.out.println(((end_time1-start_time1)/1000));
 				    long start_time2 = System.nanoTime(); 
-				    ArrayList number_results2 = Normal_Skyline.find_normalskyline();				    
+				    ArrayList number_results2 = Normal_Skyline.find_normalskyline();
+				   // ArrayList number_results2 = ASJQ_revised.find_aggregatedskyline();
 				    long end_time2 = System.nanoTime();
-				    
+				    //System.out.println(((end_time2-start_time2)/1000));
 				    bw11.write(String.valueOf(nodes_list.get(i)));
 				    bw11.write("\t");
 				    bw11.write(String.valueOf(nodes_list.get(j)));
@@ -63,7 +65,7 @@ class Final_Stats5 {
 				    }
 				   // bw11.write(String.valueOf(number_results1)); //Change this!!
 				    bw11.write("\t");
-				    bw11.write(String.valueOf(end_time1-start_time1));
+				    bw11.write(String.valueOf((end_time1-start_time1)/1000));
 				    bw11.write("\t");
 				    for (int k=0; k<number_results2.size(); k++) {
 				    	bw11.write(String.valueOf(number_results2.get(k)));
@@ -71,9 +73,9 @@ class Final_Stats5 {
 				    }
 
 				    bw11.write("\t");
-				    bw11.write(String.valueOf(end_time2-start_time2));
+				    bw11.write(String.valueOf((end_time2-start_time2)/1000));
 				    bw11.write("\n");			
-				    //System.out.println((end_time1-start_time1)+" "+(end_time2-start_time2));
+				   
 				}
 			}						
 		}

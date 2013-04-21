@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 class Final_Stats5 {
-	static String folder = "Sample10_revised10/";
+	static String folder = "Sample10statswoIO_10/";
 	static int number = 10;
     static ArrayList nodes_list = new ArrayList();
 
@@ -65,7 +65,7 @@ class Final_Stats5 {
 				    }
 				   // bw11.write(String.valueOf(number_results1)); //Change this!!
 				    bw11.write("\t");
-				    bw11.write(String.valueOf(end_time1-start_time1));
+				    bw11.write(String.valueOf((end_time1-start_time1)/1000));
 				    bw11.write("\t");
 				    for (int k=0; k<number_results2.size(); k++) {
 				    	bw11.write(String.valueOf(number_results2.get(k)));
@@ -73,7 +73,7 @@ class Final_Stats5 {
 				    }
 
 				    bw11.write("\t");
-				    bw11.write(String.valueOf(end_time2-start_time2));
+				    bw11.write(String.valueOf((end_time2-start_time2)/1000));
 				    bw11.write("\n");			
 				    //System.out.println((end_time1-start_time1)+" "+(end_time2-start_time2));
 				}
