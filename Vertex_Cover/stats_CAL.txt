@@ -1,0 +1,26 @@
+California Road Network
+(Streaming Algorithm used!)
+Nodes : 1965206, Edges : 5533214
+
+Iteration 0 : 1667800	0.848664211
+Iteration 1 : 1518348	0.910389735
+Iteration 2 : 1507086	0.992582728
+Iteration 3 : 1505558	0.998986123
+Iteration 4 : 1505282	0.999816679
+Iteration 5 : 1505236	0.999969441
+Iteration 6 : 1505220	0.99998937
+Iteration 7 : 1505216	 0.999997343
+Iteration 8 : 1505216
+
+
+California Road Network
+(Streaming Algorithm used!)
+
+Iteration 0 : 1667800	0.848664211
+Iteration 1 : 1518348	0.910389735
+Iteration 2 : 1390326	0.915683361
+Iteration 3 : 1326834	0.954333013
+Iteration 4 : 1281366	0.96573196
+Iteration 5 : 1245544	0.972043897
+Iteration 6 : 1217146	0.977200324
+Iteration 7 : 1192564	0.979803573

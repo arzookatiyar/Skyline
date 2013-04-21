@@ -1,0 +1,77 @@
+Cases : 
+
+Join will only be possible when the destination of the current relation and the source of the next relation are the same.
+Hence,
+
+a-->b(p1, d1)   b-->c(p2, d2)
+a-->b(p3, d3)   b-->c(p4, d4)
+
+Case1 : Both of them are in the local skyline group hence possible when : 
+p1<p3 and d1<d3    and    p2<p4 and d2<d4
+
+a-->b-->c                  a-->b-->c             a-->b-->c             a-->b-->c
+p1p2, d1+d2		   p1p4, d1+d4           p3p2, d3+d2           p3p4, d3+d4	
+
+Here we will need to see if the paths2 and paths3 are both in the skyline set or not!!
+
+
+a-->b(p1, d1)   b-->c(p2, d2)
+a-->d(p3, d3)   d-->c(p4, d4)
+
+Possible cases : 
+1) p1<p3 and d1<d3    and    p2<p4 and d2<d4  (both  the sets are not dominated by each other)
+
+a-->b-->c                  a-->d-->c             
+p1p2, d1+d2		   p3p4, d3+d4           
+(Both are skyline)
+
+2) p1>p3 and d1<d3    and    p2<p4 and d2<d4  (one set is dominated now)
+
+a-->b-->c                  a-->d-->c             
+p1p2, d1+d2		   p3p4, d3+d4           
+(May or maynot be both Skyline. Need to check)
+
+3) p1>p3 and d1<d3    and    p2>p4 and d2<d4  (both sets are dominated now)
+
+a-->b-->c                  a-->d-->c             
+p1p2, d1+d2		   p3p4, d3+d4           
+(1st dominates the second)
+
+Also
+
+a-->b(p1, d1)   b-->c(p2, d2)
+a-->b(p3, d3)   
+
+p1>p3 and d1<d3   
+
+a-->b-->c                  a-->b-->c             
+p1p2, d1+d2		   p3p2, d3+d2         
+
+Only 1 is a skyline!(Not possible case)
+
+
+a-->b(p1, d1)   b-->c(p2, d2)
+a-->b(p3, d3)   b-->k(p4, d4)
+
+a-->b-->c                  a-->b-->k             a-->b-->c             a-->b-->k
+p1p2, d1+d2		   p1p4, d1+d4           p3p2, d3+d2           p3p4, d3+d4	
+
+p1>p3 and d1<d3
+
+Such a case is not possible as there cannot be two paths a-->b such that 1 is a skyline over other.
+
+
+Algo : 
+
+In the 2nd relation, if form a path that ends in node k, then we can remove all the edges from the non local skyline set of the second relation that ends in node k.
+
+Also if the edge is p-->k, then Can we remove all the paths from the LHS relation that end in p? (No such path!)
+
+
+
+
+
+
+a-->b and a-->b  two paths cannot dominate the other path but they may belong to the different local and non-local skyline set.
+
+

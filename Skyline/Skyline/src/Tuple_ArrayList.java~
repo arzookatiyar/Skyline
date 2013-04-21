@@ -1,0 +1,11 @@
+import java.util.ArrayList;
+
+class Tuple_ArrayList {
+    ArrayList<Tuple> skyline;
+    ArrayList<Tuple> non_skyline;
+
+    public Tuple_ArrayList(ArrayList<Tuple> skyline, ArrayList<Tuple> non_skyline) {
+	this.skyline = skyline;
+	this.non_skyline = non_skyline;
+    }
+}

@@ -1,0 +1,120 @@
+import java.io.*;
+import java.util.ArrayList;
+
+class Aggregated_Skyline {
+    public static void main(String args[]) throws IOException {
+	
+	/* When we are running this code we have all the files with the required 
+	   relations i.e.,
+	   a) source->nodes (type 1)
+	   b) node->node(type 2)
+	   c) node->dest(type_m)
+	   d) node_id, prob
+	   We also have a file which stores the sequence of the types
+	*/
+	
+	FileInputStream stream = new FileInputStream("Sample_5/order_5.txt");
+	DataInputStream in = new DataInputStream(stream);
+	BufferedReader br = new BufferedReader(new InputStreamReader(in));
+	String strLine_1 = br.readLine();
+	ArrayList join_order = new ArrayList();
+	
+	while (strLine_1!=null) {
+	    int type_1 = Integer.parseInt(strLine_1);
+	    strLine_1 = br.readLine();
+	    join_order.add(type_1);
+	}
+	String file_name = "Sample_5/relation_s5.txt";
+	//JOIN (node and source edges)
+	String join_file1 = computeSimpleJoin(file_name, "Sample_5/relation_node_5.txt", 3);//will result in a file called "Sample_5/join_relation_node_5.txt"
+	
+	//We need to process the file to store the current paths seen till now.
+	FileInputStream stream_id = new FileInputStream(join_file1);
+	DataInputStream in_id = new DataInputStream(stream_id);
+	BufferedReader br_id = new BufferedReader(new InputStreamReader(in_id));
+	String strLine_id;
+	TreeSet free_index = new TreeSet(null);
+	
+	ArrayList<ArrayList<Integer>> path_list = new ArrayList<ArrayList<Integer>>();
+	
+	while((strLine_id=br_id.readLine())!=null) {
+	    String[] line = strLine_id.split("/t");
+	    int id = Integer.parseInt(line[3]);
+	    ArrayList<Integer> new_pathlist = new ArrayList<Integer>();
+	    new_pathlist.add(Integer.parseInt(line[0]));
+	    path_list.add(id, new_pathlist);
+	}
+	
+	for (int i=1; i<join_order.size(); i++) {
+	    file_name = "relation_type"+join_order.get(i)+".txt";
+	    System.out.println(file_name);
+	    //JOIN (node and edge)
+	    String join_file2;
+	    if (i < join_order.size()-1) {
+		/*At the end there is a join_file1, we have to end it with the destination side relation */
+		join_file2 = computeSimpleJoin("Sample_5/relation_d5.txt", "Sample_5/relation_node_5.txt", 4);	
+	    }
+	    else {
+		join_file2 = computeSimpleJoin(file_name, "Sample_5/relation_node_5.txt", 1); //will result in a file called "Sample_5/join_relationtypeN.txt"
+	    }
+	    
+	    /*Compute the full skylines for both the relations*/
+	    //	    ArrayList<Tuple> full_1 = computeFullSkyline(join_file1, false);//?why false : join_file1 is a route
+	    // ArrayList<Tuple> full_2 = computeFullSkyline(join_file2, true);//why true?
+	    
+	    ArrayList<Tuple> full_1 = computeFullSkyline(join_file1, true);
+	    ArrayList<Tuple> full_2 = computeFullSkyline(join_file2, false);
+	    
+	    /* for the currrent setup all the edges will finally be in the local skyline set! */
+	    Tuple_ArrayList local_tuple_1 = computeLocalSkyline(full_1, true);
+	    Tuple_ArrayList local_tuple_2 = computeLocalSkyline(full_2, false);
+	    
+	    ArrayList AB = computeSimpleJoin(local_tuple_1.skyline , local_tuple_2.skyline, path_list, free_index);
+	    ArrayList dashAB = computeSimpleJoin(local_tuple_1.non_skyline , local_tuple_2.skyline, path_list, free_index);
+	    ArrayList AdashB = computeSimpleJoin(local_tuple_1.skyline , local_tuple_2.non_skyline, path_list, free_index);
+	    
+	    //NOT SURE WHAT TO INCLUDE HERE
+	    ArrayList dashAdashB = computeSimpleJoin(local_tuple_1.non_skyline , local_tuple_2.non_skyline, path_list, free_index);
+	    
+	    //According to the research paper,we need to find the join and write it in a file
+	    //Create an array list containing all the skylines found till now
+	    AB.addAll(dashAB);
+	    AB.addAll(AdashB);
+	    
+	    for (int k=0; k<dashAdashB.size(); k++) {
+		if (is_skyline((Tuple)dashAdashB.get(k), AB, true)) {
+		    AB.add((Tuple)dashAdashB.get(k));
+		}
+	    }
+	    
+	    //Write this into a file
+	    /* Can improve efficiency by not writing the answers everytime to the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	    
+	    join_file1 = "Sample_5/skyline_5"+i+".txt";
+	    FileWriter fstream = new FileWriter(join_file1);
+	    BufferedWriter out = new BufferedWriter(fstream);	
+	    for (int k=0; k<AB.size(); k++) {
+		Tuple t = (Tuple)AB.get(k);
+		out.write(t.node_id1);
+		out.write("/t");
+		out.write(t.distance);
+		out.write("/t");
+		out.write(t.probability);
+		out.write("/t");
+		out.write(t.path_id);
+		out.write("/n");
+	    }
+	    out.close();	    	    
+	}
+		
+	/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("Enter the sequence separated by space");
+	String []line = br.readLine().split(" ");
+	int []order = new int[line.length];
+	for (int i=0; i<line.length; i++) {
+	    order[i] = Integer.parseInt(line[i]);
+	}
+	// Here we need to change the relations with respect to the order given*/
+	
+    }
+}

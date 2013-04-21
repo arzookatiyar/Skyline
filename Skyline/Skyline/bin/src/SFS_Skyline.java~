@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+class SFS_Skyline {
+    ArrayList<Tuple> data = new ArrayList<Tuple>();
+    TreeSet<Tuple> sortedData=new TreeSet<Tuple>(new Comp());
+    
+    public static void main(String args[]) throwsIOException {
+	
+    }
+}
+
+
+class Comp implements Comparator {
+    public int compare(Object first, Object second) {
+	Tuple A = (Tuple)first;
+	Tuple B = (Tuple)second;
+	if (A.is_edge == true) {
+	    
+	}
+	else {
+	}
+    }
+}

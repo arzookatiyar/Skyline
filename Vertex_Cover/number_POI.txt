@@ -1,0 +1,35 @@
+NY city (bbox=40.3,-74.5,41.3,-73.5)
+
+hotel  : 100 
+pub : 72
+cafe : 94
+bank : 56
+atm : 23
+bus_stop : 101
+motel : 3
+bakery : 10
+hospital : 408
+museum : 127
+park : 700 and more
+theatre : 109
+car_rental  : 3
+school : 700 and more
+
+
+CAL (bbox=32.5,-125,42.0,-114)
+
+hotel  : 700+ (415+374)
+pub : 311
+cafe : 700+ (336+698)
+bank : 700+  (303+404+6)
+atm : 469
+bus_stop : 700+ (700 for every degree change in latitude)
+motel : 318
+bakery : 64
+hospital : 700+ 
+museum : 700+ (233+590)
+park : 700+ 
+theatre : 266
+car_rental  : 41
+school : 700+
+

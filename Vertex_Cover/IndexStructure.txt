@@ -1,0 +1,13 @@
+At the lowest level, we only store the nodes(shops of every type).\
+---> a small graph, now we only store the shortest distance between every pair, use ASJQ to compute the skylines?
+Use the dijkstra's to find all the shops of the 1st type to all the other nodes in this small graph? (Can we not use some other criteria?)
+
+
+
+
+
+
+Even for the process of ASJQ we have done the preprocessing. Find the shortest distance to all the nodes in the graph and then store all the relations?!!
+Even if we leave the precomputed relations. 
+Given the source and the destination we need to find the 1st relation, we need to do dijkstras to find the nearest nodes of type1.
+(Plus we are keeping the order of the sequence fixed!!!  From the index structure we may not need to keep the order fixed?!!! (CHECK!))
