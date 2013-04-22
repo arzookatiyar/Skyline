@@ -46,7 +46,10 @@ class Final_Stats {
 				    GenerateRelations tt  = new GenerateRelations();
 					tt.generate((Integer)nodes_list.get(i) , (Integer)nodes_list.get(j));
 
-				    
+			//NOTE : generate function should also be included in the path!! As this takes into account the time taken to build the source and the destination relation.
+			//wHY AM i CALCULATION ALL THE rELATIONS FORIST ANF THEN EXTRACTNG THOSE OF TYPE1 OR TYPE2?!!!! WE ALREADY KNOW 1ST TYPE!!!		
+					
+		
 				    s.update_sd();
 				    long start_time1 = System.nanoTime(); 
 				    ArrayList number_results1 = Aggregated_Skyline.find_aggregatedskyline();				    

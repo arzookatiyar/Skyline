@@ -8,5 +8,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.cloudmade.examples.Examplem_n_revised"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="cloudmade-java-api"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx10024m"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx30024m"/>
 </launchConfiguration>

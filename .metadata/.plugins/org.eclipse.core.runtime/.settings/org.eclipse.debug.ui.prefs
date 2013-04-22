@@ -1,5 +1,4 @@
-#Tue Apr 16 14:31:02 IST 2013
-Console.limitConsoleOutput=false
+#Sun Apr 21 17:32:05 IST 2013
 pref_state_memento.org.eclipse.debug.ui.DebugVieworg.eclipse.debug.ui.DebugView=<?xml version\="1.0" encoding\="UTF-8"?>\n<DebugViewMemento org.eclipse.debug.ui.BREADCRUMB_DROPDOWN_AUTO_EXPAND\="false"/>
 eclipse.preferences.version=1
 Console.highWaterMark=88000

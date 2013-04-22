@@ -12,9 +12,6 @@
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
-	<section name="BuildPathsPropertyPage">
-		<item value="2" key="pageIndex"/>
-	</section>
 	<section name="JarPackageWizard">
 		<item value="false" key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES"/>
 		<item value="true" key="JarManifestWizardPage.GENERATE_MANIFEST"/>
@@ -37,6 +34,9 @@
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
 			<item value="Skyline/cloudmade-java-api.jar"/>
 		</list>
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="ClasspathContainerSelectionPage">
 		<item value="0" key="index"/>

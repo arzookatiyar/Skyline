@@ -9,5 +9,46 @@ Use the dijkstra's to find all the shops of the 1st type to all the other nodes 
 
 Even for the process of ASJQ we have done the preprocessing. Find the shortest distance to all the nodes in the graph and then store all the relations?!!
 Even if we leave the precomputed relations. 
-Given the source and the destination we need to find the 1st relation, we need to do dijkstras to find the nearest nodes of type1.
+Given the source and the destination we need to find the 1st relation, we need to do dijkstras to find the nearest nodes of type1. (on a large graph?!!)
 (Plus we are keeping the order of the sequence fixed!!!  From the index structure we may not need to keep the order fixed?!!! (CHECK!))
+
+
+To compute the relation for source and destination in ASJQ?!!
+(We already have the nodes of every types stored! We just need to find a path from the source to every node of 1st type?!)
+
+Complexity to find the skylines in case of ASJQ.
+We already know : 1) relation from every node of a type to every other node of the 'other type'. (Right now we only know the relation to calculate the relation according to the order already known. If we can store the relation from node of type1 to every other node of other type then we just need to extract the desired relation according to a given order)
+		  2) Nodes of every type and their coordinates!
+		
+We need to find out (Now we know the source, destination, order)
+		  1) From the source and destination we need to build a relation to the nodes of the desired types given by the order.
+		  2) Now we need to calculate the join of these relations and find out skylines and then calculate the time.
+
+
+
+INDEX STRUCTURE : 
+
+How is it better?!!
+
+At the lowest level, we store only the nodes of every type. Do we need to calculate the skylines or can we avoid calculating the skylines with the help of the shortest distance computations?
+
+So we have all the nodes of different types and we also store the shortest distance to every other node. Just like the ASJQ implementation we can store the relations that is from every node of type 1 we can store a relation that contains the nodes of every other type.
+Now we will have to join these relations to get the result.
+
+
+Given a point in the node, if we are able to find the 4 shops of type1 which are closes to it. (similarly for the destination we can get maximum 4 shops of type n).
+Then the problem will reduce to finding the skylines between every source and destination pair. 
+Time complexity : 4(ASJQ paper)
+
+
+We are gaining on the number of nodes we have to cover (dijkstra's algorithm) till we can find the 1st relation of source as well as destination!
+
+
+Construction of the index structure : 
+1) At the lowest level, we keep all the nodes of every type. A shortest path graph to every other node that has to be connected.
+2) In the next level we have some 10% of the nodes which are connected to these typed nodes. Now we have clustered (many points of intersection in these nodes). Now if we are somehow able to find the cluster to which our source/destination belongs. We now also know the order. We find its adjacent typed nodes. Find which belong to type 1 form a relation. Similar for the destination. Now compute ASJQ?
+3) In a higher level, we now have smaller clusters, so an intersection clutster might have another intersection cluster as the neighbour. Now to find the relations we will need to hop the graph till we get a typed node?? More time but better results?
+(How to prove that the higher level will result in a better distance approximation? As there might be a cluster non typed node in between?)
+
+
+

@@ -16,7 +16,7 @@ import java.util.LinkedList;
 public class Examplem_n_revised {
 	static Hashtable prob_table = new Hashtable();
 	static int nodes = 30;
-	static String folder = "NewSample30_revised";
+	static String folder = "MoreNewSample30_revised";
 	
 	
 	public static int among_POI(int []array_id, int []check_id) {
@@ -157,7 +157,7 @@ public class Examplem_n_revised {
 	    out_node.close();
 	    //for (int i=0; i<results.found; i++) {
 	    int counter1=0;
-	    for (int i=0; i<(results11.found+results12.found+results13.found+results14.found+results15.found); i++) {
+	    for (int i=11; i<(results11.found+results12.found+results13.found+results14.found+results15.found); i++) {
 	    	out.write("NEW\n");	
 	    	if (i < results11.found) {
 	    		out.write(Integer.toString((results11.results[i]).id));
@@ -519,8 +519,8 @@ public class Examplem_n_revised {
 		                    "en",
 		                    MeasureUnit.KM
 		                );*/
-	    			System.out.println(route.summary.totalDistance);
-	    			System.out.println(route.geometry.points);
+	    			//System.out.println(route.summary.totalDistance);
+	    			//System.out.println(route.geometry.points);
 	    			
 	    		//	System.out.println((results.results[i]).centroid+"  "+(results.results[j]).centroid);
 	    			
@@ -639,7 +639,7 @@ public class Examplem_n_revised {
 	    				if (i<results11.found) {
 	    					if (common_ids1<=2) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results11.results[j]).id;	    						
 	    					}
@@ -647,7 +647,7 @@ public class Examplem_n_revised {
 	    				else {
 	    					if (common_ids1 <= 1) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results11.results[j]).id;	    							    						
 	    					}
@@ -661,7 +661,7 @@ public class Examplem_n_revised {
 	    				if (i >= results11.found && i<(results11.found + results12.found)) {
 	    					if (common_ids2<=2) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results12.results[j-(results11.found)]).id;	    						
 	    					}
@@ -669,7 +669,7 @@ public class Examplem_n_revised {
 	    				else {
 	    					if (common_ids2 <= 1) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results12.results[j-(results11.found)]).id;	    							    						
 	    					}
@@ -684,7 +684,7 @@ public class Examplem_n_revised {
 	    				if (i >= (results11.found + results12.found) && i<(results11.found + results12.found+results13.found)) {
 	    					if (common_ids3<=2) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    			    		array_id[counter] = (results13.results[j-(results11.found+results12.found)]).id;
 	    					}
@@ -692,7 +692,7 @@ public class Examplem_n_revised {
 	    				else {
 	    					if (common_ids3 <= 1) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    			    		array_id[counter] = (results13.results[j-(results11.found+results12.found)]).id;
 	    					}
@@ -707,7 +707,7 @@ public class Examplem_n_revised {
 				    	if (i >= (results11.found + results12.found+results13.found) && i<(results11.found + results12.found+results13.found+results14.found)) {
 	    					if (common_ids4<=2) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results14.results[j-(results11.found+results12.found+results13.found)]).id;
 	    						}
@@ -715,7 +715,7 @@ public class Examplem_n_revised {
 	    				else {
 	    					if (common_ids4 <= 1) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results14.results[j-(results11.found+results12.found+results13.found)]).id;
 	    					}
@@ -731,7 +731,7 @@ public class Examplem_n_revised {
 				    	if (i >= (results11.found + results12.found+results13.found + results14.found)) {
 	    					if (common_ids5<=2) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results15.results[j-(results11.found+results12.found+results13.found + results14.found)]).id;
 	    						}
@@ -739,7 +739,7 @@ public class Examplem_n_revised {
 	    				else {
 	    					if (common_ids5 <= 1) {
 	    						++counter;
-	    						System.out.println("counter now increased "+counter);
+	    						//System.out.println("counter now increased "+counter);
 	    						array_dist[counter] = (int)route.summary.totalDistance;
 	    						array_id[counter] = (results15.results[j-(results11.found+results12.found+results13.found + results14.found)]).id;
 	    					}

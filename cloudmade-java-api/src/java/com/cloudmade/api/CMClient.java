@@ -333,7 +333,7 @@ public class CMClient {
                 .optJSONArray("features")), obj.optInt("found", 0), Utils
                 .bboxFromJson(obj.optJSONArray("bounds")));
         //GeoResult[] result1 = Utils.geoResultsFromJson(obj.optJSONArray("features"));
-        System.out.println(result.found);
+        //System.out.println(result.found);
         //System.out.println(result1.length);
         //System.out.println(result1[0].properties);
         return result;
@@ -366,7 +366,7 @@ public class CMClient {
                 .optJSONArray("features")), obj.optInt("found", 0), Utils
                 .bboxFromJson(obj.optJSONArray("bounds")));
         //GeoResult[] result1 = Utils.geoResultsFromJson(obj.optJSONArray("features"));
-        System.out.println(result.found);
+       // System.out.println(result.found);
         //System.out.println(result1.length);
         //System.out.println(result1[0].properties);
         return result;
@@ -401,7 +401,7 @@ public class CMClient {
                 URLEncoder.encode(object_type, "UTF-8"), tps, URLEncoder.encode(Integer.toString(distance), "UTF-8"), 
                 URLEncoder.encode(Integer.toString(results), "UTF-8"));
 
-        System.out.println(uri);    
+       // System.out.println(uri);    
 
         Map<String, String> map = new HashMap<String, String>(0);
         map.put("return_geometry", "true");
@@ -409,13 +409,13 @@ public class CMClient {
         response = callService(uri, "geocoding", null);
         map.clear();
         JSONObject obj = new JSONObject(new String(response, "UTF-8"));
-        System.out.println(uri);
+        //System.out.println(uri);
         //GeoResults result = new GeoResults(Utils.geoResultsFromJson(obj.optJSONArray("features")));
         GeoResults result = new GeoResults(Utils.geoResultsFromJson(obj
                 .optJSONArray("features")), obj.optInt("found", 0), Utils
                 .bboxFromJson(obj.optJSONArray("bounds")));
         //GeoResult[] result1 = Utils.geoResultsFromJson(obj.optJSONArray("features"));
-        System.out.println(result.found);
+        //System.out.println(result.found);
         //System.out.println(result1.length);
         //System.out.println(result1[0].properties);
         /*if (result.found != 0) 
