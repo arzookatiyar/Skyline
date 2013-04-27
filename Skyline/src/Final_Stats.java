@@ -27,15 +27,15 @@ class Final_Stats {
 	    s.find_Relations();
 	    
 		
-		for (int i=0; i<nodes_list.size(); i++) {
-		//for (int i=0; i<1; i++) {
+		//for (int i=0; i<nodes_list.size(); i++) {
+		for (int i=0; i<1; i++) {
 		    /*FileWriter fw = new FileWriter(folder+"relation_s"+number+".txt");
 		    BufferedWriter bw2 = new BufferedWriter(fw);
 		    bw2.write(String.valueOf(nodes_list.get(i)));
 		    bw2.close();*/
 		    
-		for (int j=0; j<nodes_list.size(); j++) {
-		//    for (int j=13; j<14; j++) {
+		//for (int j=0; j<nodes_list.size(); j++) {
+		    for (int j=13; j<14; j++) {
 				System.out.println(i+"   "+j);
 				if (i!=j) {
 				    FileWriter fw1 = new FileWriter(folder+"relation_d"+number+".txt");
@@ -44,6 +44,7 @@ class Final_Stats {
 				    bw1.close();
 				    
 				    GenerateRelations tt  = new GenerateRelations();
+				    long prestart_time1 = System.nanoTime();
 					tt.generate((Integer)nodes_list.get(i) , (Integer)nodes_list.get(j));
 
 			//NOTE : generate function should also be included in the path!! As this takes into account the time taken to build the source and the destination relation.
@@ -51,6 +52,8 @@ class Final_Stats {
 					
 		
 				    s.update_sd();
+				    long preend_time1 = System.nanoTime();
+				    System.out.println("Start "+(preend_time1-prestart_time1)/1000);
 				    long start_time1 = System.nanoTime(); 
 				    ArrayList number_results1 = Aggregated_Skyline.find_aggregatedskyline();				    
 				    long end_time1 = System.nanoTime();
@@ -69,6 +72,7 @@ class Final_Stats {
 				   // bw11.write(String.valueOf(number_results1)); //Change this!!
 				    bw11.write("\t");
 				    bw11.write(String.valueOf((end_time1-start_time1)/1000));
+				    System.out.println("ASJQ "+(end_time1-start_time1)/1000);
 				    bw11.write("\t");
 				    for (int k=0; k<number_results2.size(); k++) {
 				    	bw11.write(String.valueOf(number_results2.get(k)));
@@ -77,6 +81,7 @@ class Final_Stats {
 
 				    bw11.write("\t");
 				    bw11.write(String.valueOf((end_time2-start_time2)/1000));
+				    System.out.println("Normal "+(end_time2-start_time2)/1000);
 				    bw11.write("\n");				    
 				}
 			}						

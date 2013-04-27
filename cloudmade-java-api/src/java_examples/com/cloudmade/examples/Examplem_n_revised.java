@@ -157,7 +157,7 @@ public class Examplem_n_revised {
 	    out_node.close();
 	    //for (int i=0; i<results.found; i++) {
 	    int counter1=0;
-	    for (int i=11; i<(results11.found+results12.found+results13.found+results14.found+results15.found); i++) {
+	    for (int i=107; i<(results11.found+results12.found+results13.found+results14.found+results15.found); i++) {
 	    	out.write("NEW\n");	
 	    	if (i < results11.found) {
 	    		out.write(Integer.toString((results11.results[i]).id));

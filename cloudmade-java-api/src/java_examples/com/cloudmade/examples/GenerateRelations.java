@@ -63,6 +63,11 @@ public class GenerateRelations {
 
 
 	
+	public void smart_generate(int start_id, int end_id, int start_type, int end_type) throws IOException{
+		
+		
+	}
+	
 	public void generate(int start_id, int end_id) throws IOException{
 		
 		/*Read in result_id from the relation_node file*/
